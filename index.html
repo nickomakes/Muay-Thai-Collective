@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUAY THAI COLLECTIVE // INVITE ONLY</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Syne & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            punk: {
+              black: '#070709',
+              surface: '#111115',
+              card: '#16161b',
+              border: '#26262e',
+              red: '#9e2229',
+              redBright: '#c92a33',
+              redDark: '#4a0d12',
+              ash: '#a1a1aa'
+            }
+          },
+          fontFamily: {
+            display: ['"Syne"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          boxShadow: {
+            'brutal-red': '5px 5px 0px #9e2229',
+            'brutal-dark': '5px 5px 0px #4a0d12',
+            'brutal-white': '5px 5px 0px #ffffff',
+            'brutal-sm': '3px 3px 0px #9e2229'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Industrial grid & noise surface */
+    .bg-tactical-grid {
+      background-color: #070709;
+      background-image: 
+        linear-gradient(to right, rgba(158, 34, 41, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(158, 34, 41, 0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+
+    /* Animated Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 24s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Radar Sweep Animation */
+    @keyframes radar-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .radar-sweep {
+      background: conic-gradient(from 0deg, rgba(158, 34, 41, 0.45) 0deg, transparent 90deg);
+      animation: radar-spin 4s linear infinite;
+    }
+
+    /* Barcode styling */
+    .barcode {
+      background: repeating-linear-gradient(
+        90deg,
+        #e4e4e7,
+        #e4e4e7 2px,
+        transparent 2px,
+        transparent 5px,
+        #e4e4e7 5px,
+        #e4e4e7 6px,
+        transparent 6px,
+        transparent 9px,
+        #e4e4e7 9px,
+        #e4e4e7 12px,
+        transparent 12px,
+        transparent 14px
+      );
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070709;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #26262e;
+      border: 1px solid #9e2229;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9e2229;
+    }
+  </style>
+</head>
+
+<body class="bg-tactical-grid text-zinc-100 font-mono antialiased selection:bg-punk-red selection:text-white min-h-screen flex flex-col overflow-x-hidden">
+
+  <!-- Infinite Scrolling Top Caution Marquee -->
+  <div class="bg-punk-red text-white text-[11px] font-extrabold uppercase tracking-[0.2em] py-2 border-b-2 border-black overflow-hidden select-none">
+    <div class="animate-marquee">
+      <div class="flex items-center gap-8 px-4">
+        <span>/// CLOSED SANCTUM ///</span>
+        <span>&bull;</span>
+        <span>STRICT 80-MEMBER CAP</span>
+        <span>&bull;</span>
+        <span>INVITE &amp; VOUCH ONLY</span>
+        <span>&bull;</span>
+        <span>NO WALK-INS</span>
+        <span>&bull;</span>
+        <span>PRIVATE INSTAGRAM VETTING</span>
+        <span>&bull;</span>
+        <span>16OZ GLOVES + SHIN GUARDS MANDATORY</span>
+        <span>&bull;</span>
+      </div>
+      <div class="flex items-center gap-8 px-4" aria-hidden="true">
+        <span>/// CLOSED SANCTUM ///</span>
+        <span>&bull;</span>
+        <span>STRICT 80-MEMBER CAP</span>
+        <span>&bull;</span>
+        <span>INVITE &amp; VOUCH ONLY</span>
+        <span>&bull;</span>
+        <span>NO WALK-INS</span>
+        <span>&bull;</span>
+        <span>PRIVATE INSTAGRAM VETTING</span>
+        <span>&bull;</span>
+        <span>16OZ GLOVES + SHIN GUARDS MANDATORY</span>
+        <span>&bull;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-punk-black/90 backdrop-blur-md border-b border-punk-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      <!-- Brand Wordmark -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-punk-red text-white font-display font-black text-xl flex items-center justify-center border border-punk-redBright shadow-[3px_3px_0px_#4a0d12] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-none transition-all">
+          M
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-black text-lg sm:text-xl tracking-tight leading-none text-white">
+            MUAY THAI <span class="text-punk-redBright">COLLECTIVE</span>
+          </span>
+          <span class="text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-0.5">
+            SANCTUM // EST. 2026
+          </span>
+        </div>
+      </a>
+
+      <!-- Anchor Links & Primary Instagram CTA -->
+      <nav class="flex items-center gap-3 sm:gap-6">
+        <a href="#schedule" class="hidden md:inline-block text-xs uppercase tracking-widest text-zinc-400 hover:text-punk-redBright transition-colors">
+          [01. Schedule]
+        </a>
+        <a href="#directions" class="hidden md:inline-block text-xs uppercase tracking-widest text-zinc-400 hover:text-punk-redBright transition-colors">
+          [02. Directions]
+        </a>
+        <a href="#ig-gate" class="text-xs uppercase font-extrabold tracking-wider bg-punk-red text-white border border-punk-redBright px-4 py-2.5 shadow-brutal-dark hover:bg-punk-redBright hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+          <span>Request Follow</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+
+    <!-- HERO SECTION -->
+    <section class="relative max-w-6xl mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Column: Hero Statement -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2.5 border border-punk-red/60 bg-punk-red/10 px-3.5 py-1.5 text-xs text-punk-redBright font-bold uppercase tracking-widest">
+            <span class="w-2 h-2 bg-punk-redBright animate-ping"></span>
+            <span>Private Underground Facility &bull; No Public Signups</span>
+          </div>
+
+          <h1 class="font-display text-5xl sm:text-7xl xl:text-8xl font-black uppercase leading-[0.88] tracking-tighter text-white">
+            BLOOD.<br>
+            IRON.<br>
+            <span class="text-punk-redBright drop-shadow-[0_4px_24px_rgba(158,34,41,0.45)]">
+              EIGHTY SOULS.
+            </span>
+          </h1>
+
+          <p class="text-zinc-400 text-sm sm:text-base max-w-xl leading-relaxed">
+            An invite-only Muay Thai collective capped strictly under 80 fighters. No front desk, no drop-in classes, and no commercial ego. Entry is granted exclusively through active member referral and our locked Instagram dispatch.
+          </p>
+
+          <!-- Primary & Secondary Hero Actions -->
+          <div class="pt-3 flex flex-col sm:flex-row gap-4">
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="px-7 py-4 bg-punk-red border-2 border-punk-redBright text-white font-black uppercase text-sm tracking-wider shadow-brutal-dark hover:bg-punk-redBright hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all flex items-center justify-center gap-3 group"
+            >
+              <!-- Instagram Icon -->
+              <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <span>Request to Follow for Invite</span>
+            </a>
+
+            <a 
+              href="#schedule" 
+              class="px-7 py-4 bg-zinc-950 border-2 border-zinc-700 text-white font-bold uppercase text-sm tracking-wider shadow-brutal-white hover:border-white hover:bg-white hover:text-black hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all flex items-center justify-center gap-2"
+            >
+              <span>Inspect Fight Schedule</span>
+              <span>&darr;</span>
+            </a>
+          </div>
+
+          <!-- 3-Step Vetting Protocol Strip -->
+          <div class="pt-8 border-t border-punk-border grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div class="bg-punk-surface/90 border border-punk-border p-3.5">
+              <div class="text-punk-redBright font-extrabold mb-1">// STEP 01</div>
+              <div class="text-white font-bold uppercase">Request Follow</div>
+              <p class="text-zinc-500 text-[11px] mt-1">Hit the locked @MuayThaiCollective Instagram profile.</p>
+            </div>
+            <div class="bg-punk-surface/90 border border-punk-border p-3.5">
+              <div class="text-punk-redBright font-extrabold mb-1">// STEP 02</div>
+              <div class="text-white font-bold uppercase">DM Your Vouch</div>
+              <p class="text-zinc-500 text-[11px] mt-1">Send the full name of the current member vouching for you.</p>
+            </div>
+            <div class="bg-punk-surface/90 border border-punk-border p-3.5">
+              <div class="text-punk-redBright font-extrabold mb-1">// STEP 03</div>
+              <div class="text-white font-bold uppercase">Door Code Issued</div>
+              <p class="text-zinc-500 text-[11px] mt-1">Once cleared, you receive the exact bay door pin &amp; onboarding.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Industrial Dossier & Roster Counter Card -->
+        <div class="lg:col-span-5">
+          <div class="bg-punk-surface border-2 border-punk-red p-6 sm:p-7 shadow-brutal-red relative">
+            
+            <!-- Corner Classification Tag -->
+            <div class="flex items-center justify-between border-b border-punk-border pb-4 mb-5">
+              <div>
+                <span class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 block">DOSSIER // ACCESS STATUS</span>
+                <h2 class="font-display font-black text-2xl text-white tracking-tight mt-0.5">SANCTUM ROSTER</h2>
+              </div>
+              <span class="px-2.5 py-1 bg-punk-red/20 border border-punk-red text-punk-redBright text-[10px] font-extrabold uppercase tracking-widest">
+                LOCKED
+              </span>
+            </div>
+
+            <!-- Custom SVG Sak Yant / Eight Limbs Tactical Emblem -->
+            <div class="my-5 py-6 bg-punk-black border border-punk-border flex flex-col items-center justify-center relative overflow-hidden">
+              <svg class="w-28 h-28 text-punk-redBright opacity-90" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2">
+                <!-- Outer Octagon (8 Limbs) -->
+                <polygon points="38,8 82,8 112,38 112,82 82,112 38,112 8,82 8,38" stroke-dasharray="4 2" />
+                <polygon points="42,16 78,16 104,42 104,78 78,104 42,104 16,78 16,42" stroke-width="1.5" />
+                <!-- Inner Unalome / Spear Spire -->
+                <path d="M60 22 L60 98 M42 60 L78 60" stroke-width="2" />
+                <circle cx="60" cy="60" r="16" stroke-width="2" />
+                <circle cx="60" cy="60" r="5" fill="currentColor" />
+                <path d="M35 35 L85 85 M85 35 L35 85" stroke-width="1" opacity="0.5" />
+              </svg>
+              <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mt-3">THE ART OF EIGHT LIMBS</span>
+            </div>
+
+            <!-- Live Capacity Gauge -->
+            <div class="space-y-2 mb-6">
+              <div class="flex justify-between text-xs">
+                <span class="text-zinc-400 uppercase">Current Active Roster:</span>
+                <span class="text-white font-extrabold">74 / 80 SPOTS</span>
+              </div>
+              <div class="w-full h-3 bg-punk-black border border-punk-border p-0.5">
+                <div class="h-full bg-punk-red" style="width: 92.5%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-punk-redBright font-bold">
+                <span>STATUS: CRITICAL CAPACITY</span>
+                <span>6 INVITES REMAINING</span>
+              </div>
+            </div>
+
+            <!-- Spec Details -->
+            <div class="space-y-2.5 text-xs border-t border-punk-border pt-4 mb-6">
+              <div class="flex justify-between">
+                <span class="text-zinc-500">PUBLIC WALK-INS:</span>
+                <span class="text-white font-bold">PROHIBITED</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-zinc-500">SPARRING ETIQUETTE:</span>
+                <span class="text-punk-redBright font-bold">TECHNICAL &bull; ZERO EGO</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-zinc-500">COMMUNICATION CHANNEL:</span>
+                <span class="text-white font-bold">IG DISPATCH ONLY</span>
+              </div>
+            </div>
+
+            <!-- Barcode Footer -->
+            <div class="pt-3 border-t border-punk-border flex items-center justify-between">
+              <div class="w-36 h-7 barcode opacity-80"></div>
+              <span class="text-[10px] text-zinc-500 tracking-widest font-bold">MTC // 080-CAP</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 01: OFFICIAL TRAINING SCHEDULE -->
+    <section id="schedule" class="py-20 border-t-2 border-punk-border bg-punk-surface/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <!-- Section Header + Interactive Filter Buttons -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+          <div>
+            <div class="text-xs font-extrabold uppercase tracking-[0.2em] text-punk-redBright mb-2">
+              // 01. TRAINING TIMETABLE &bull; DOORS LOCK AT BELL
+            </div>
+            <h2 class="font-display text-4xl sm:text-5xl font-black uppercase text-white tracking-tight">
+              SYNDICATE <span class="text-punk-redBright">HOURS</span>
+            </h2>
+          </div>
+
+          <!-- Filter Pills -->
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Filter training sessions">
+            <button onclick="filterSchedule('all')" data-filter="all" class="schedule-filter-btn text-xs uppercase font-extrabold px-3.5 py-2 border border-punk-red bg-punk-red text-white transition-all">
+              All Blocks
+            </button>
+            <button onclick="filterSchedule('class')" data-filter="class" class="schedule-filter-btn text-xs uppercase font-bold px-3.5 py-2 border border-punk-border bg-punk-black text-zinc-400 hover:text-white hover:border-punk-red transition-all">
+              Class
+            </button>
+            <button onclick="filterSchedule('sparring')" data-filter="sparring" class="schedule-filter-btn text-xs uppercase font-bold px-3.5 py-2 border border-punk-border bg-punk-black text-zinc-400 hover:text-white hover:border-punk-red transition-all">
+              Sparring
+            </button>
+            <button onclick="filterSchedule('opengym')" data-filter="opengym" class="schedule-filter-btn text-xs uppercase font-bold px-3.5 py-2 border border-punk-border bg-punk-black text-zinc-400 hover:text-white hover:border-punk-red transition-all">
+              Open Gym
+            </button>
+          </div>
+        </div>
+
+        <!-- Summary Schedule Blocks (Direct Match to Reference Table) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+          
+          <!-- MONDAY - FRIDAY MASTER BLOCK -->
+          <div class="lg:col-span-7 bg-punk-black border-2 border-punk-red p-6 sm:p-8 shadow-brutal-red flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-punk-border pb-4 mb-6">
+                <div>
+                  <span class="text-[10px] uppercase tracking-[0.25em] text-punk-redBright font-extrabold block">WEEKDAY BLOCK</span>
+                  <h3 class="font-display font-black text-2xl sm:text-3xl text-white uppercase">MONDAY – FRIDAY</h3>
+                </div>
+                <span class="px-3 py-1.5 bg-punk-red text-white text-xs font-extrabold uppercase tracking-wider">
+                  5:30 PM – 8:00 PM
+                </span>
+              </div>
+
+              <div class="divide-y divide-punk-border text-xs sm:text-sm">
+                <!-- Open Gym -->
+                <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="opengym">
+                  <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 bg-zinc-500"></span>
+                    <div>
+                      <div class="text-white font-extrabold uppercase text-base">Open Gym</div>
+                      <div class="text-zinc-500 text-xs">Warm-up, shadowboxing, bag work &amp; wrap prep</div>
+                    </div>
+                  </div>
+                  <div class="text-zinc-300 font-bold sm:text-right whitespace-nowrap">5:30 – 6:00 PM</div>
+                </div>
+
+                <!-- Class -->
+                <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="class">
+                  <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 bg-punk-redBright"></span>
+                    <div>
+                      <div class="text-white font-extrabold uppercase text-base">Class</div>
+                      <div class="text-zinc-500 text-xs">Technical Muay Thai pad rounds, partner drills &amp; clinch</div>
+                    </div>
+                  </div>
+                  <div class="text-punk-redBright font-extrabold sm:text-right whitespace-nowrap">6:00 – 7:15 PM</div>
+                </div>
+
+                <!-- Sparring Mon & Thu -->
+                <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="sparring">
+                  <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 bg-white"></span>
+                    <div>
+                      <div class="text-punk-redBright font-extrabold uppercase text-base">
+                        Sparring <span class="text-white text-xs font-bold">(Monday &amp; Thursday)</span>
+                      </div>
+                      <div class="text-zinc-500 text-xs">Controlled technical rounds &bull; 16oz gloves + shins required</div>
+                    </div>
+                  </div>
+                  <div class="text-white font-extrabold sm:text-right whitespace-nowrap">7:15 – 8:00 PM</div>
+                </div>
+
+                <!-- Open Gym Tue, Wed & Fri -->
+                <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="opengym">
+                  <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 bg-zinc-500"></span>
+                    <div>
+                      <div class="text-white font-extrabold uppercase text-base">
+                        Open Gym <span class="text-zinc-400 text-xs font-bold">(Tuesday, Wednesday &amp; Friday)</span>
+                      </div>
+                      <div class="text-zinc-500 text-xs">Self-directed rounds, bag work, clinch &amp; conditioning</div>
+                    </div>
+                  </div>
+                  <div class="text-zinc-300 font-bold sm:text-right whitespace-nowrap">7:15 – 8:00 PM</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-punk-border flex items-center justify-between text-[11px] text-zinc-500">
+              <span>EVENING DOORS UNLOCK AT 5:20 PM</span>
+              <span class="text-punk-redBright font-bold uppercase">MON – FRI</span>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: SATURDAY + SUNDAY BLOCKS -->
+          <div class="lg:col-span-5 flex flex-col gap-6">
+            
+            <!-- SATURDAY BLOCK -->
+            <div class="bg-punk-black border-2 border-punk-border hover:border-punk-red transition-colors p-6 sm:p-7 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-punk-border pb-4 mb-5">
+                  <div>
+                    <span class="text-[10px] uppercase tracking-[0.25em] text-punk-redBright font-extrabold block">WEEKEND SESSION</span>
+                    <h3 class="font-display font-black text-2xl text-white uppercase">SATURDAY</h3>
+                  </div>
+                  <span class="px-3 py-1 bg-zinc-900 border border-punk-red text-punk-redBright text-xs font-extrabold uppercase">
+                    11:00 AM – 1:30 PM
+                  </span>
+                </div>
+
+                <div class="divide-y divide-punk-border text-xs sm:text-sm">
+                  <div class="schedule-item py-3 flex items-center justify-between gap-2" data-category="opengym">
+                    <div>
+                      <div class="text-zinc-300 font-bold uppercase">Doors Open / Warm-Up</div>
+                    </div>
+                    <div class="text-zinc-400 font-bold whitespace-nowrap">11:00 – 11:30 AM</div>
+                  </div>
+
+                  <div class="schedule-item py-3.5 flex items-center justify-between gap-2" data-category="class">
+                    <div>
+                      <div class="text-white font-extrabold uppercase text-base">Class</div>
+                      <div class="text-zinc-500 text-xs">All-roster technical session</div>
+                    </div>
+                    <div class="text-punk-redBright font-extrabold whitespace-nowrap">11:30 AM – 12:45 PM</div>
+                  </div>
+
+                  <div class="schedule-item py-3.5 flex items-center justify-between gap-2" data-category="sparring opengym">
+                    <div>
+                      <div class="text-white font-extrabold uppercase text-base">Sparring / Open Gym</div>
+                      <div class="text-zinc-500 text-xs">Live rounds &amp; open mat</div>
+                    </div>
+                    <div class="text-white font-extrabold whitespace-nowrap">12:45 PM – 1:30 PM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SUNDAY BLOCK -->
+            <div class="bg-punk-black border-2 border-punk-border p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-punk-border pb-3 mb-4">
+                <div>
+                  <span class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-extrabold block">RECOVERY &amp; 1-ON-1</span>
+                  <h3 class="font-display font-black text-2xl text-white uppercase">SUNDAY</h3>
+                </div>
+                <span class="px-2.5 py-1 bg-zinc-900 border border-zinc-700 text-zinc-400 text-xs font-bold uppercase">
+                  Closed (for now)
+                </span>
+              </div>
+
+              <div class="flex items-center justify-between text-xs sm:text-sm py-1">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-2 h-2 bg-punk-red"></span>
+                  <span class="text-white font-extrabold uppercase">Private Training</span>
+                </div>
+                <span class="text-zinc-400 text-xs uppercase">By Arrangement via IG</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Day-by-Day Visual Strip (Mon - Sun Quick Glance) -->
+        <div class="border border-punk-border bg-punk-black p-5">
+          <div class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-bold mb-4">
+            // 7:15 PM – 8:00 PM EVENING ROTATION AT A GLANCE
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 text-xs">
+            <div class="schedule-item p-3 border border-punk-red/60 bg-punk-red/10" data-category="sparring">
+              <div class="text-zinc-400 font-bold text-[10px]">MON</div>
+              <div class="text-white font-extrabold uppercase mt-1">Sparring</div>
+              <div class="text-[10px] text-punk-redBright font-bold mt-0.5">7:15 – 8:00 PM</div>
+            </div>
+            <div class="schedule-item p-3 border border-punk-border bg-punk-surface" data-category="opengym">
+              <div class="text-zinc-400 font-bold text-[10px]">TUE</div>
+              <div class="text-white font-extrabold uppercase mt-1">Open Gym</div>
+              <div class="text-[10px] text-zinc-400 mt-0.5">7:15 – 8:00 PM</div>
+            </div>
+            <div class="schedule-item p-3 border border-punk-border bg-punk-surface" data-category="opengym">
+              <div class="text-zinc-400 font-bold text-[10px]">WED</div>
+              <div class="text-white font-extrabold uppercase mt-1">Open Gym</div>
+              <div class="text-[10px] text-zinc-400 mt-0.5">7:15 – 8:00 PM</div>
+            </div>
+            <div class="schedule-item p-3 border border-punk-red/60 bg-punk-red/10" data-category="sparring">
+              <div class="text-zinc-400 font-bold text-[10px]">THU</div>
+              <div class="text-white font-extrabold uppercase mt-1">Sparring</div>
+              <div class="text-[10px] text-punk-redBright font-bold mt-0.5">7:15 – 8:00 PM</div>
+            </div>
+            <div class="schedule-item p-3 border border-punk-border bg-punk-surface" data-category="opengym">
+              <div class="text-zinc-400 font-bold text-[10px]">FRI</div>
+              <div class="text-white font-extrabold uppercase mt-1">Open Gym</div>
+              <div class="text-[10px] text-zinc-400 mt-0.5">7:15 – 8:00 PM</div>
+            </div>
+            <div class="schedule-item p-3 border border-punk-red/40 bg-punk-surface" data-category="sparring opengym">
+              <div class="text-zinc-400 font-bold text-[10px]">SAT</div>
+              <div class="text-white font-extrabold uppercase mt-1">Spar / Open</div>
+              <div class="text-[10px] text-punk-redBright font-bold mt-0.5">12:45 – 1:30 PM</div>
+            </div>
+            <div class="p-3 border border-zinc-800 bg-zinc-950/60 opacity-75">
+              <div class="text-zinc-500 font-bold text-[10px]">SUN</div>
+              <div class="text-zinc-400 font-extrabold uppercase mt-1">Private Only</div>
+              <div class="text-[10px] text-zinc-500 mt-0.5">Closed (for now)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mandatory Gear Notice -->
+        <div class="mt-6 p-4 bg-punk-black border border-punk-red/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="px-2 py-0.5 bg-punk-red text-white font-extrabold uppercase text-[10px]">MANDATORY</span>
+            <span class="text-zinc-300">All fighters must bring mouthguard, steel cup, 16oz sparring gloves, and full shin-instep guards. No loaner gear exists.</span>
+          </div>
+          <span class="text-zinc-500 font-bold uppercase whitespace-nowrap">MON–FRI 5:30–8:00 PM &bull; SAT 11:00 AM–1:30 PM</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 02: DIRECTIONS & ACCESS PROTOCOL -->
+    <section id="directions" class="py-20 border-t-2 border-punk-border">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <div class="mb-10">
+          <div class="text-xs font-extrabold uppercase tracking-[0.2em] text-punk-redBright mb-2">
+            // 02. COORDINATES &amp; ENTRY PROTOCOL
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl font-black uppercase text-white tracking-tight">
+            LOCATING <span class="text-punk-redBright">THE SANCTUM</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          
+          <!-- Left: Tactical Radar / Industrial Sector Map -->
+          <div class="lg:col-span-6 bg-punk-surface border-2 border-punk-border p-6 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex items-center justify-between z-10 border-b border-punk-border pb-3 mb-4">
+              <span class="text-xs font-bold uppercase text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-punk-redBright animate-ping"></span>
+                INDUSTRIAL DISTRICT // SECTOR 4
+              </span>
+              <span class="text-[11px] text-zinc-400 font-mono">49.2827&deg; N, 123.1207&deg; W</span>
+            </div>
+
+            <!-- Vector Street Grid + Radar Visual -->
+            <div class="relative h-64 sm:h-72 bg-punk-black border border-punk-border overflow-hidden flex items-center justify-center my-2">
+              <!-- Street Grid SVG -->
+              <svg class="absolute inset-0 w-full h-full opacity-25" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="cityGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+                    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#9e2229" stroke-width="1"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#cityGrid)" />
+                <!-- Stylized alleys & rail lines -->
+                <line x1="0" y1="85" x2="600" y2="85" stroke="#ffffff" stroke-width="2" stroke-dasharray="8 4" />
+                <line x1="180" y1="0" x2="180" y2="400" stroke="#ffffff" stroke-width="3" />
+                <line x1="0" y1="210" x2="600" y2="140" stroke="#9e2229" stroke-width="2" />
+              </svg>
+
+              <!-- Radar Circles -->
+              <div class="relative w-48 h-48 rounded-full border border-punk-red/50 flex items-center justify-center">
+                <div class="w-32 h-32 rounded-full border border-punk-red/40 flex items-center justify-center">
+                  <div class="w-16 h-16 rounded-full border border-punk-red/30"></div>
+                </div>
+                <!-- Rotating Sweep -->
+                <div class="absolute inset-0 rounded-full radar-sweep"></div>
+                <!-- Target Pin -->
+                <div class="relative z-10 w-3.5 h-3.5 bg-punk-redBright rounded-full shadow-[0_0_15px_#c92a33]"></div>
+              </div>
+
+              <!-- Map Overlay Labels -->
+              <div class="absolute bottom-3 left-3 bg-punk-black/90 border border-punk-red px-2.5 py-1 text-[10px] text-white uppercase tracking-wider">
+                UNMARKED BLACK STEEL ROLL-UP BAY #4B
+              </div>
+            </div>
+
+            <!-- Copy Coordinates Action -->
+            <div class="pt-4 border-t border-punk-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="text-xs text-zinc-400">
+                ZONE: <span class="text-white font-bold">EAST INDUSTRIAL FREIGHT CORRIDOR</span>
+              </div>
+              <button 
+                onclick="copyDirections()" 
+                id="copyDirBtn"
+                class="text-xs uppercase font-extrabold px-4 py-2 bg-zinc-900 border border-punk-red text-punk-redBright hover:bg-punk-red hover:text-white transition-colors"
+              >
+                Copy Sector Coordinates
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Physical Directions & Arrival Instructions -->
+          <div class="lg:col-span-6 bg-punk-surface border-2 border-punk-border p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div>
+              <span class="text-[10px] uppercase font-extrabold tracking-widest bg-punk-red text-white px-2.5 py-1">
+                NO STREET SIGNAGE
+              </span>
+              <h3 class="font-display font-black text-2xl sm:text-3xl text-white uppercase mt-3">
+                HOW TO FIND THE BAY DOOR
+              </h3>
+              <p class="text-xs sm:text-sm text-zinc-400 mt-2 leading-relaxed">
+                To keep foot traffic zero and protect the privacy of our roster, our street address is withheld from public search engines. Approved members receive the exact pin drop via Instagram DM.
+              </p>
+
+              <!-- Landmark Steps -->
+              <div class="mt-6 space-y-4 text-xs">
+                <div class="flex gap-3.5 items-start">
+                  <span class="px-2 py-1 bg-punk-black border border-punk-red text-punk-redBright font-extrabold">01</span>
+                  <div>
+                    <div class="text-white font-bold uppercase">Transit &amp; Freight Access</div>
+                    <p class="text-zinc-400 mt-0.5">4 blocks North of the Freight Rail Yard. Enter via the rear loading alley between 4th &amp; 5th Industrial Ave.</p>
+                  </div>
+                </div>
+
+                <div class="flex gap-3.5 items-start">
+                  <span class="px-2 py-1 bg-punk-black border border-punk-red text-punk-redBright font-extrabold">02</span>
+                  <div>
+                    <div class="text-white font-bold uppercase">Look for the Red Bulkhead Light</div>
+                    <p class="text-zinc-400 mt-0.5">Matte-black corrugated steel warehouse. Heavy crimson cage light illuminated above the keypad during active training hours.</p>
+                  </div>
+                </div>
+
+                <div class="flex gap-3.5 items-start">
+                  <span class="px-2 py-1 bg-punk-black border border-punk-red text-punk-redBright font-extrabold">03</span>
+                  <div>
+                    <div class="text-white font-bold uppercase">Parking &amp; Bikes</div>
+                    <p class="text-zinc-400 mt-0.5">Unrestricted gravel parking along the loading dock wall after 5:00 PM. Bring bicycles inside the bay.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 bg-punk-black border-l-4 border-punk-red text-xs text-zinc-300">
+              <strong class="text-white uppercase block mb-0.5">FIRST TIME VISITING?</strong>
+              Do not knock on neighboring bay doors. Message your referring member or our Instagram dispatch when parked outside.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: THE INSTAGRAM GATE (INVITE REQUEST) -->
+    <section id="ig-gate" class="py-24 border-t-2 border-punk-border bg-gradient-to-b from-punk-black to-punk-surface">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        
+        <div class="border-2 border-punk-red bg-punk-black p-8 sm:p-12 shadow-brutal-red text-center relative">
+          
+          <!-- Top Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-punk-red text-white text-[11px] font-extrabold uppercase tracking-widest mb-6">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>PRIVATE ACCOUNT // @MUAYTHAICOLLECTIVE</span>
+          </div>
+
+          <h2 class="font-display text-4xl sm:text-6xl font-black uppercase text-white tracking-tight leading-none">
+            THE ONLY DOOR IN IS <span class="text-punk-redBright">THROUGH DISPATCH.</span>
+          </h2>
+
+          <p class="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto mt-5 leading-relaxed">
+            We don't run web forms, sales funnels, or trial classes. Request to follow our private Instagram and send a direct message with your full name and the active member vouching for you.
+          </p>
+
+          <!-- Mock Instagram Profile Preview Strip -->
+          <div class="max-w-md mx-auto my-8 p-4 bg-punk-surface border border-punk-border flex items-center justify-between text-left">
+            <div class="flex items-center gap-3.5">
+              <div class="w-12 h-12 bg-punk-red text-white font-display font-black text-xl flex items-center justify-center border border-punk-redBright">
+                MTC
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-white font-bold text-sm">@muaythaicollective</span>
+                  <svg class="w-3.5 h-3.5 text-punk-redBright" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="text-[11px] text-zinc-400">Private Sanctum &bull; 74 Members &bull; Invite Only</div>
+              </div>
+            </div>
+            <span class="text-[10px] uppercase font-bold px-2 py-1 bg-zinc-900 border border-zinc-700 text-zinc-300">
+              LOCKED
+            </span>
+          </div>
+
+          <!-- Big Brutalist Request to Follow Button -->
+          <div class="pt-2">
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 bg-punk-red border-2 border-punk-redBright text-white font-black uppercase text-sm sm:text-base tracking-wider shadow-brutal-white hover:bg-punk-redBright hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <span>Request to Follow @MuayThaiCollective</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+
+          <p class="text-[11px] text-zinc-500 mt-5 uppercase tracking-widest">
+            UNVERIFIED REQUESTS WITHOUT A MEMBER VOUCH IN DM ARE DECLINED WEEKLY
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Minimal Brutalist Footer -->
+  <footer class="border-t border-punk-border bg-punk-black py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 bg-punk-red"></span>
+        <span class="font-display font-black text-white tracking-tight">MUAY THAI COLLECTIVE</span>
+        <span>// ALL RIGHTS RESERVED</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#schedule" class="hover:text-white transition-colors uppercase">Schedule</a>
+        <a href="#directions" class="hover:text-white transition-colors uppercase">Directions</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-punk-redBright hover:underline font-bold uppercase">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Scripts for Schedule Filter & Coordinate Copy -->
+  <script>
+    // Filter Schedule Items by Block Category
+    function filterSchedule(category) {
+      const items = document.querySelectorAll('.schedule-item');
+      const buttons = document.querySelectorAll('.schedule-filter-btn');
+
+      // Update active button state
+      buttons.forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-punk-red', 'text-white', 'border-punk-red');
+          btn.classList.remove('bg-punk-black', 'text-zinc-400', 'border-punk-border');
+        } else {
+          btn.classList.remove('bg-punk-red', 'text-white', 'border-punk-red');
+          btn.classList.add('bg-punk-black', 'text-zinc-400', 'border-punk-border');
+        }
+      });
+
+      // Highlight or dim sessions based on category
+      items.forEach(item => {
+        const categories = item.dataset.category.split(' ');
+        if (category === 'all' || categories.includes(category)) {
+          item.style.opacity = '1';
+          item.style.transform = 'translateX(0)';
+        } else {
+          item.style.opacity = '0.2';
+          item.style.transform = 'translateX(2px)';
+        }
+        item.style.transition = 'all 0.25s ease';
+      });
+    }
+
+    // Copy Industrial Sector Coordinates to Clipboard
+    function copyDirections() {
+      const coords = "Muay Thai Collective - East Industrial Freight Corridor, Bay #4B (49.2827 N, 123.1207 W)";
+      const btn = document.getElementById('copyDirBtn');
+      const originalText = btn.textContent;
+
+      // Fallback-safe copy method for iframe environments
+      const tempInput = document.createElement('textarea');
+      tempInput.value = coords;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      btn.textContent = "COORDINATES COPIED // CHECK CLIPBOARD";
+      btn.classList.add('bg-punk-red', 'text-white');
+
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.classList.remove('bg-punk-red', 'text-white');
+      }, 2200);
+    }
+  </script>
+</body>
+</html>
