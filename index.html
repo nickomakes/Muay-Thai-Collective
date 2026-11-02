@@ -3,85 +3,204 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Muay Thai Collective | Boutique Training Studio • East Vancouver</title>
+  <title>The Muay Thai Collective | East Vancouver</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <!-- Google Fonts: Rubik Mono One /Changa One for chunky 80s magazine masthead + Plus Jakarta Sans + Space Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1980s THAI MUAY THAI MAGAZINE COVER PALETTE (Yod Nak Su #291)
+       3 Core Colors:
+       1. --c-bg     (Sun-Faded Magazine Paper Base)
+       2. --c-ink    (Deep Extrusion Block Shadow / Text Ink)
+       3. --c-accent (Sun-Baked Cover Masthead Face Color)
+       ========================================================================== */
+
+    :root {
+      --c-bg: #EFE6D0;
+      --c-bg-card: #F6F0E1;
+      --c-ink: #32548C;
+      --c-accent: #D14836;
+    }
+
+    body {
+      background-color: var(--c-bg);
+      color: var(--c-ink);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      /* Faded vintage offset halftone dots */
+      background-image: 
+        radial-gradient(var(--c-ink) 0.55px, transparent 0.55px),
+        radial-gradient(var(--c-accent) 0.45px, var(--c-bg) 0.45px);
+      background-size: 16px 16px;
+      background-position: 0 0, 8px 8px;
+    }
+
+    /* Sun-bleached newsprint patina & subtle paper vignette */
+    .paper-tint {
+      background: 
+        radial-gradient(circle at 50% 35%, rgba(255, 250, 235, 0.88) 0%, rgba(235, 222, 192, 0.92) 70%, rgba(190, 170, 135, 0.95) 100%);
+      mix-blend-mode: normal;
+      opacity: 0.91;
+    }
+
+    /* Vintage SVG Noise Grain Overlay */
+    .vintage-grain {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.065'/%3E%3C/svg%3E");
+    }
+
+    /* Custom 3-Color Utility Classes */
+    .bg-paper { background-color: var(--c-bg); }
+    .bg-card { background-color: var(--c-bg-card); }
+    .bg-ink { background-color: var(--c-ink); }
+    .bg-accent { background-color: var(--c-accent); }
+
+    .text-paper { color: var(--c-bg); }
+    .text-ink { color: var(--c-ink); }
+    .text-accent { color: var(--c-accent); }
+
+    .border-ink { border-color: var(--c-ink); }
+    .border-accent { border-color: var(--c-accent); }
+
+    /* ==========================================================================
+       AUTHENTIC 80s THAI MAGAZINE MASTHEAD 3D EXTRUSION EFFECT
+       Matches the Red/Pink letters + Cream/Yellow inner outline + Deep Blue/Green 3D block shadow
+       ========================================================================== */
+    .thai-masthead {
+      color: var(--c-accent);
+      -webkit-text-stroke: 2.5px var(--c-bg-card);
+      paint-order: stroke fill;
+      text-shadow:
+        1px 1px 0px var(--c-ink),
+        2px 2px 0px var(--c-ink),
+        3px 3px 0px var(--c-ink),
+        4px 4px 0px var(--c-ink),
+        5px 5px 0px var(--c-ink),
+        6px 6px 0px var(--c-ink),
+        7px 7px 0px var(--c-ink),
+        8px 8px 0px var(--c-ink),
+        9px 9px 0px var(--c-ink);
+      letter-spacing: 0.01em;
+    }
+
+    .thai-masthead-sm {
+      color: var(--c-accent);
+      -webkit-text-stroke: 1.5px var(--c-bg-card);
+      paint-order: stroke fill;
+      text-shadow:
+        1px 1px 0px var(--c-ink),
+        2px 2px 0px var(--c-ink),
+        3px 3px 0px var(--c-ink),
+        4px 4px 0px var(--c-ink),
+        5px 5px 0px var(--c-ink);
+    }
+
+    /* Tactile Vintage Print Block Shadows */
+    .stamp-shadow {
+      box-shadow: 6px 6px 0px var(--c-ink);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .stamp-shadow-sm {
+      box-shadow: 4px 4px 0px var(--c-ink);
+    }
+    .stamp-shadow-accent {
+      box-shadow: 6px 6px 0px var(--c-accent);
+    }
+    .stamp-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px var(--c-ink);
+    }
+    .stamp-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--c-ink);
+    }
+
+    /* Magazine Cover Photo Frame (Pink/Red double-border like Issue #291) */
+    .poster-frame {
+      border: 3px solid var(--c-accent);
+      box-shadow: 
+        inset 0 0 0 3px var(--c-bg-card),
+        inset 0 0 0 5px var(--c-ink),
+        7px 7px 0px var(--c-ink);
+    }
+
+    /* Angled Magazine Cover Ribbon (Like bottom of Issue #291) */
+    .mag-ribbon {
+      clip-path: polygon(0 0, 97% 0, 100% 50%, 97% 100%, 0 100%);
+    }
+
+    /* Retro Ticket Notches */
+    .ticket-card {
+      border: 2.5px solid var(--c-ink);
+      position: relative;
+    }
+
+    /* Sun-faded vintage print filter for the overall page */
+    .faded-print {
+      filter: contrast(0.95) saturate(0.88);
+    }
+
+    /* Marquee Ticker Animation */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+  </style>
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            brand: {
-              bg: '#FAF8F5',
-              surface: '#F2EFE9',
-              dark: '#141413',
-              charcoal: '#262624',
-              clay: '#C84B31',
-              clayHover: '#A83820',
-              sage: '#2D6A4F',
-              muted: '#6E6D68',
-              border: '#E5E0D8'
-            }
-          },
           fontFamily: {
-            display: ['"Outfit"', 'sans-serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+            display: ['"Changa One"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace']
           }
         }
       }
     }
   </script>
-
-  <style>
-    body {
-      background-color: #FAF8F5;
-      color: #141413;
-    }
-    .glass-nav {
-      background: rgba(250, 248, 245, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-  </style>
 </head>
 
-<body class="font-sans antialiased selection:bg-brand-clay selection:text-white min-h-screen flex flex-col">
+<body class="font-sans antialiased min-h-screen flex flex-col relative faded-print">
+  <!-- Faded Magazine Paper & Grain Overlays -->
+  <div class="fixed inset-0 paper-tint pointer-events-none -z-20"></div>
+  <div class="fixed inset-0 vintage-grain pointer-events-none z-50"></div>
 
   <!-- Top Promotional Announcement Banner -->
-  <div class="bg-brand-dark text-white text-xs sm:text-sm py-2.5 px-4 text-center font-medium">
+  <div class="bg-ink text-paper text-xs sm:text-sm py-2.5 px-4 text-center font-medium border-b-2 border-ink">
     <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-2">
-      <span class="px-2 py-0.5 rounded-full bg-brand-clay text-white text-[11px] font-bold uppercase tracking-wider">Limited Offer</span>
-      <span><strong>Founding Annual Pass: $1,500</strong> (Get 2 Months Free) — Promo ends <strong>November 30</strong>.</span>
-      <a href="#pricing" class="underline hover:text-brand-clay transition-colors font-semibold ml-1">View Pricing &rarr;</a>
+      <span class="px-2.5 py-0.5 rounded-md bg-accent text-paper text-[11px] font-mono font-bold uppercase tracking-wider">Limited Promo</span>
+      <span><strong>One Year Up Front: $1,500</strong> (Get 2 Months Free) — Ends <strong>November 30</strong>.</span>
+      <a href="#pricing" class="underline hover:opacity-80 font-bold ml-1">See Passes &rarr;</a>
     </div>
   </div>
 
-  <!-- Sticky Navigation -->
-  <header class="sticky top-0 z-40 glass-nav border-b border-brand-border">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-end">
-      <!-- Navigation Links -->
-      <nav class="flex items-center gap-5 sm:gap-8 w-full sm:w-auto justify-between sm:justify-end">
-        <div class="flex items-center gap-5 sm:gap-8">
-          <a href="#schedule" class="text-sm font-medium text-brand-charcoal hover:text-brand-clay transition-colors">
-            Schedule
-          </a>
-          <a href="#pricing" class="text-sm font-medium text-brand-charcoal hover:text-brand-clay transition-colors">
-            Memberships
-          </a>
-          <a href="#location" class="text-sm font-medium text-brand-charcoal hover:text-brand-clay transition-colors">
-            Location
-          </a>
+  <!-- Navigation (No Top-Left Logo Block as Requested) -->
+  <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b-2 border-ink">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between sm:justify-end">
+      <nav class="flex items-center gap-5 sm:gap-8 w-full justify-between sm:justify-end">
+        <div class="flex items-center gap-5 sm:gap-8 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
+          <a href="#schedule" class="text-ink hover:text-accent transition-colors">Schedule</a>
+          <a href="#pricing" class="text-ink hover:text-accent transition-colors">Rates</a>
+          <a href="#location" class="text-ink hover:text-accent transition-colors">Location</a>
         </div>
         <a 
           href="https://www.instagram.com/the_muaythai_collective/" 
           target="_blank" 
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-brand-dark hover:bg-brand-clay text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 rounded-full shadow-sm transition-all"
+          class="stamp-btn inline-flex items-center gap-2 bg-accent text-paper border-2 border-ink text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 rounded-xl stamp-shadow-sm"
         >
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -94,35 +213,51 @@
 
   <main class="flex-grow">
 
-    <!-- HERO SECTION -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-16 sm:pb-24">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <!-- HERO SECTION (80s THAI MAGAZINE MASTHEAD TREATMENT) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-14 pb-14 sm:pb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
-        <!-- Left Column: Editorial Copy -->
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-surface border border-brand-border text-xs font-semibold text-brand-charcoal">
-            <span class="w-2 h-2 rounded-full bg-brand-clay"></span>
-            <span>Invite-Only Collective &bull; 40 Members Total &bull; 20 Per Class</span>
+        <!-- Left Column: 3D Extruded Magazine Title & Cover Ribbons -->
+        <div class="lg:col-span-7 space-y-6 relative">
+          
+          <!-- Angled Magazine Cover Ribbon (Like bottom of Issue #291) -->
+          <div class="inline-block mag-ribbon bg-accent text-paper px-5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider stamp-shadow-sm">
+            ★ Invite-Only &bull; 40 Members Total &bull; 20 Per Class
           </div>
 
-          <h1 class="font-display text-5xl sm:text-7xl font-extrabold tracking-tight text-brand-dark leading-[0.98] uppercase">
-            The Muay Thai<br>
-            <span class="text-brand-clay">Collective.</span>
-          </h1>
+          <!-- 3D Extruded Masthead + Issue Starburst Seal -->
+          <div class="relative inline-block pr-4 sm:pr-16">
+            <h1 class="font-display text-6xl sm:text-8xl uppercase leading-[0.88] thai-masthead select-none">
+              The Muay Thai<br>
+              Collective
+            </h1>
 
-          <p class="text-brand-muted text-base sm:text-lg max-w-xl leading-relaxed">
+            <!-- Classic Thai Magazine Starburst Issue Seal (Like "ฉบับที่ 291 / 293") -->
+            <div class="hidden sm:flex absolute -right-6 bottom-1 w-24 h-24 items-center justify-center rotate-12">
+              <svg viewBox="0 0 100 100" class="w-full h-full text-ink drop-shadow">
+                <polygon fill="currentColor" points="50,0 58,12 71,4 74,18 89,14 86,29 100,32 91,44 100,56 86,62 91,76 76,76 75,91 61,85 54,99 43,88 31,98 25,84 11,89 12,74 0,72 7,59 0,47 12,38 4,25 18,22 17,7 31,11 37,0 47,10"/>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-paper font-mono leading-none text-center">
+                <span class="text-[9px] font-bold uppercase opacity-90">ROSTER</span>
+                <span class="font-display text-2xl">40</span>
+                <span class="text-[9px] font-bold uppercase">MAX CAP</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-ink text-base sm:text-lg max-w-xl leading-relaxed font-semibold">
             An invite-only, community-driven training space in East Vancouver. Everyone on the mats is already at a solid level—no commercial hand-holding or beginner cattle calls. Led by our coaches alongside member-taught sessions, with classes strictly capped at <strong>20 people on the floor</strong> and a total roster limit of <strong>40 members</strong>.
           </p>
 
           <!-- Primary CTAs -->
-          <div class="pt-2 flex flex-col sm:flex-row gap-3.5">
+          <div class="pt-2 flex flex-col sm:flex-row gap-4">
             <a 
               href="https://www.instagram.com/the_muaythai_collective/" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="px-7 py-4 rounded-xl bg-brand-dark hover:bg-brand-charcoal text-white font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2.5 shadow-sm"
+              class="stamp-btn px-7 py-4 rounded-xl bg-accent text-paper border-2 border-ink font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 stamp-shadow"
             >
-              <svg class="w-5 h-5 text-brand-clay" fill="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
               <span>Request to Follow @the_muaythai_collective</span>
@@ -130,87 +265,84 @@
 
             <a 
               href="#pricing" 
-              class="px-7 py-4 rounded-xl bg-white border border-brand-border hover:border-brand-dark text-brand-dark font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2"
+              class="stamp-btn px-7 py-4 rounded-xl bg-card border-2 border-ink text-ink font-bold text-sm sm:text-base flex items-center justify-center gap-2 stamp-shadow"
             >
               <span>View Rates &amp; Passes</span>
             </a>
           </div>
 
-          <!-- Quick Highlights -->
-          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-brand-border">
-            <div>
-              <div class="font-display font-bold text-2xl text-brand-dark">40 Cap</div>
-              <div class="text-xs text-brand-muted">Total gym membership</div>
+          <!-- Stacked Magazine Cover Ribbons (Inspired by bottom of Yod Nak Su #291) -->
+          <div class="pt-4 space-y-2 max-w-lg">
+            <div class="mag-ribbon bg-ink text-paper px-4 py-1.5 font-mono text-xs font-bold uppercase flex items-center justify-between pr-8">
+              <span>• ROSTER LIMIT: 40 MEMBERS TOTAL</span>
+              <span>EAST VANCOUVER</span>
             </div>
-            <div>
-              <div class="font-display font-bold text-2xl text-brand-dark">20 Max</div>
-              <div class="text-xs text-brand-muted">Capped per class session</div>
-            </div>
-            <div>
-              <div class="font-display font-bold text-2xl text-brand-dark">East Van</div>
-              <div class="text-xs text-brand-muted">220 Victoria Dr #120</div>
+            <div class="mag-ribbon bg-accent text-paper px-4 py-1.5 font-mono text-xs font-bold uppercase flex items-center justify-between pr-8">
+              <span>• FLOOR CAP: 20 PER CLASS</span>
+              <span>220 VICTORIA #120</span>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Collective Overview Card -->
+        <!-- Right Column: Framed Magazine Inset Box (Like the Pink/Red Framed Inset Photos on Issue #291) -->
         <div class="lg:col-span-5">
-          <div class="bg-white rounded-3xl border border-brand-border p-7 sm:p-8 shadow-sm relative overflow-hidden">
-            <div class="flex items-center justify-between pb-5 mb-6 border-b border-brand-border">
+          <div class="bg-card rounded-2xl poster-frame p-7 sm:p-8 relative">
+            
+            <!-- Top Vintage Magazine Header -->
+            <div class="flex items-center justify-between pb-4 mb-5 border-b-2 border-ink">
               <div>
-                <span class="text-xs font-semibold uppercase tracking-wider text-brand-clay block">How We Operate</span>
-                <h2 class="font-display font-bold text-2xl text-brand-dark mt-0.5">The Collective Ethos</h2>
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent block">ยอดนักสู้ &bull; EAST VANCOUVER</span>
+                <h2 class="font-display text-3xl text-ink uppercase tracking-wide">How We Operate</h2>
               </div>
-              <span class="px-3 py-1 rounded-full bg-brand-surface border border-brand-border text-brand-dark text-xs font-semibold">
-                Invite Only
-              </span>
+              <!-- Numbered Circle Badge (Like the "6" on bottom right of Issue #291) -->
+              <div class="w-12 h-12 rounded-full bg-ink text-paper flex items-center justify-center border-2 border-accent font-display text-2xl shrink-0 stamp-shadow-sm">
+                20
+              </div>
             </div>
 
-            <!-- Feature List -->
-            <div class="space-y-5">
-              <div class="flex items-start gap-3.5">
-                <div class="w-8 h-8 rounded-lg bg-brand-surface flex items-center justify-center text-brand-clay font-bold shrink-0 mt-0.5">
+            <!-- 3 Pillars -->
+            <div class="space-y-4">
+              <div class="p-3.5 rounded-xl bg-paper border-2 border-ink flex items-start gap-3.5">
+                <div class="w-7 h-7 rounded-lg bg-accent text-paper font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-ink">
                   01
                 </div>
                 <div>
-                  <h3 class="font-semibold text-brand-dark text-sm">Experienced, Self-Driven Room</h3>
-                  <p class="text-xs text-brand-muted leading-relaxed mt-0.5">
-                    Everyone here already knows how to hold pads, control their power, and work. We train together as peers rather than a commercial lecture room.
+                  <h3 class="font-bold text-ink text-sm uppercase tracking-tight">Experienced, Self-Driven Room</h3>
+                  <p class="text-xs text-ink/90 leading-relaxed mt-0.5 font-medium">
+                    Everyone here already knows how to hold pads, control their power, and work. We train together as peers.
                   </p>
                 </div>
               </div>
 
-              <div class="flex items-start gap-3.5">
-                <div class="w-8 h-8 rounded-lg bg-brand-surface flex items-center justify-center text-brand-clay font-bold shrink-0 mt-0.5">
+              <div class="p-3.5 rounded-xl bg-paper border-2 border-ink flex items-start gap-3.5">
+                <div class="w-7 h-7 rounded-lg bg-ink text-paper font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
                   02
                 </div>
                 <div>
-                  <h3 class="font-semibold text-brand-dark text-sm">Coach &amp; Member-Led Sessions</h3>
-                  <p class="text-xs text-brand-muted leading-relaxed mt-0.5">
-                    Sessions are led by our coaches alongside classes taught by experienced members of the collective sharing their own setups and styles.
+                  <h3 class="font-bold text-ink text-sm uppercase tracking-tight">Coach &amp; Member-Taught</h3>
+                  <p class="text-xs text-ink/90 leading-relaxed mt-0.5 font-medium">
+                    Led by our coaches alongside member-taught sessions where experienced members share their own setups and styles.
                   </p>
                 </div>
               </div>
 
-              <div class="flex items-start gap-3.5">
-                <div class="w-8 h-8 rounded-lg bg-brand-surface flex items-center justify-center text-brand-clay font-bold shrink-0 mt-0.5">
+              <div class="p-3.5 rounded-xl bg-paper border-2 border-ink flex items-start gap-3.5">
+                <div class="w-7 h-7 rounded-lg bg-accent text-paper font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-ink">
                   03
                 </div>
                 <div>
-                  <h3 class="font-semibold text-brand-dark text-sm">20 Per Class / 40 Total Roster</h3>
-                  <p class="text-xs text-brand-muted leading-relaxed mt-0.5">
-                    Classes are strictly capped at 20 people on the floor. Request to follow our private Instagram and DM us with your referral or background to join.
+                  <h3 class="font-bold text-ink text-sm uppercase tracking-tight">20 Per Class / Invite-Only</h3>
+                  <p class="text-xs text-ink/90 leading-relaxed mt-0.5 font-medium">
+                    Capped at 20 people on the floor. Request to follow our private Instagram and DM your referral or background.
                   </p>
                 </div>
               </div>
             </div>
 
-            <!-- Location Pill at bottom of card -->
-            <div class="mt-7 pt-5 border-t border-brand-border flex items-center justify-between text-xs">
-              <div class="text-brand-muted">
-                <strong class="text-brand-dark">Location:</strong> 220 Victoria Dr, Unit #120
-              </div>
-              <a href="#location" class="text-brand-clay font-semibold hover:underline">Get Directions &rarr;</a>
+            <!-- Bottom Stamp Bar -->
+            <div class="mt-6 pt-4 border-t-2 border-ink flex items-center justify-between font-mono text-xs font-bold">
+              <span>220 VICTORIA DR #120</span>
+              <a href="#location" class="text-accent underline">MAP &rarr;</a>
             </div>
           </div>
         </div>
@@ -218,82 +350,109 @@
       </div>
     </section>
 
+    <!-- VINTAGE ARENA MARQUEE DIVIDER -->
+    <div class="bg-ink text-paper py-3 border-y-2 border-ink overflow-hidden select-none">
+      <div class="animate-marquee font-mono text-xs sm:text-sm font-bold uppercase tracking-widest flex items-center gap-8">
+        <span>★ THE MUAY THAI COLLECTIVE</span>
+        <span class="text-accent">•</span>
+        <span>40-MEMBER ROSTER CAP</span>
+        <span class="text-accent">•</span>
+        <span>20 MAX PER CLASS</span>
+        <span class="text-accent">•</span>
+        <span>COMMUNITY &amp; PEER LED</span>
+        <span class="text-accent">•</span>
+        <span>220 VICTORIA DR, UNIT #120</span>
+        <span class="text-accent">•</span>
+        <span>INVITE ONLY VIA @THE_MUAYTHAI_COLLECTIVE</span>
+        <span class="text-accent">•</span>
+        <span>★ THE MUAY THAI COLLECTIVE</span>
+        <span class="text-accent">•</span>
+        <span>40-MEMBER ROSTER CAP</span>
+        <span class="text-accent">•</span>
+        <span>20 MAX PER CLASS</span>
+        <span class="text-accent">•</span>
+        <span>COMMUNITY &amp; PEER LED</span>
+        <span class="text-accent">•</span>
+        <span>220 VICTORIA DR, UNIT #120</span>
+      </div>
+    </div>
+
     <!-- SECTION 01: MEMBERSHIPS & PRICING -->
-    <section id="pricing" class="py-20 bg-brand-surface border-y border-brand-border">
+    <section id="pricing" class="py-20 border-b-2 border-ink">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         
-        <div class="text-center max-w-2xl mx-auto mb-14">
-          <span class="text-xs font-bold uppercase tracking-widest text-brand-clay">Collective Dues &amp; Passes</span>
-          <h2 class="font-display text-3xl sm:text-5xl font-bold text-brand-dark mt-2">
-            Memberships &amp; Drop-Ins
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent">Collective Dues &amp; Passes</span>
+          <h2 class="font-display text-5xl sm:text-6xl uppercase mt-1 thai-masthead-sm">
+            Rates &amp; Passes
           </h2>
-          <p class="text-brand-muted text-sm sm:text-base mt-3">
-            Access is by approval. Request to follow <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="text-brand-dark underline font-medium">@the_muaythai_collective</a> on Instagram and send us a DM to claim a roster spot or arrange a drop-in.
+          <p class="text-ink text-sm sm:text-base mt-3 font-semibold">
+            Access is by approval. Request to follow <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="text-accent underline font-bold">@the_muaythai_collective</a> on Instagram and DM us to claim a spot or arrange a drop-in.
           </p>
         </div>
 
-        <!-- Limited Time Annual Promo Banner Card -->
-        <div class="mb-8 rounded-3xl bg-brand-dark text-white p-7 sm:p-10 shadow-md relative overflow-hidden">
-          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+        <!-- Limited Time Annual Promo Ticket Banner -->
+        <div class="mb-10 rounded-2xl bg-ink text-paper border-2 border-ink p-7 sm:p-9 stamp-shadow-accent relative">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div class="space-y-2 max-w-xl">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-clay text-white text-xs font-bold uppercase tracking-wider">
-                <span>Special Promo &bull; Ends November 30</span>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent text-paper font-mono text-xs font-bold uppercase tracking-wider">
+                <span>★ Founding Promo &bull; Ends November 30</span>
               </div>
-              <h3 class="font-display text-2xl sm:text-3xl font-bold">
-                One Year Up Front — $1,500 <span class="text-brand-clay">(Two Months Free)</span>
+              <h3 class="font-display text-2xl sm:text-4xl font-black uppercase">
+                One Year Up Front — $1,500
               </h3>
-              <p class="text-zinc-300 text-sm leading-relaxed">
-                Commit to a full year of training and save $300 (equivalent to $125/month). Available for a limited time until <strong>November 30</strong> while our 40-member roster spots last.
+              <p class="text-paper/85 text-sm leading-relaxed">
+                Get <strong>two months free</strong> (save $300 — works out to $125/month). Available until <strong>November 30</strong> while our 40-member roster spots last.
               </p>
             </div>
 
             <div class="flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end justify-between gap-4 shrink-0">
               <div class="text-left lg:text-right">
-                <div class="text-3xl sm:text-4xl font-display font-extrabold text-white">$1,500</div>
-                <div class="text-xs text-zinc-400">12 months unlimited &bull; Save $300</div>
+                <div class="text-3xl sm:text-4xl font-display font-black text-paper">$1,500</div>
+                <div class="font-mono text-xs text-paper/80 uppercase">Two Months Free &bull; Ends Nov 30</div>
               </div>
               <a 
                 href="https://www.instagram.com/the_muaythai_collective/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="px-6 py-3.5 rounded-xl bg-brand-clay hover:bg-brand-clayHover text-white font-semibold text-sm transition-all whitespace-nowrap"
+                class="px-6 py-3.5 rounded-xl bg-accent text-paper font-bold text-sm transition-transform hover:-translate-y-0.5 whitespace-nowrap border-2 border-paper"
               >
-                Claim Promo on Instagram &rarr;
+                Claim Promo via Instagram DM &rarr;
               </a>
             </div>
           </div>
         </div>
 
-        <!-- 3 Pricing Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 3 Pricing Ticket Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
           
           <!-- Card 1: Monthly Membership -->
-          <div class="bg-white rounded-3xl border-2 border-brand-dark p-7 flex flex-col justify-between shadow-sm relative">
+          <div class="bg-card rounded-2xl ticket-card p-7 flex flex-col justify-between stamp-shadow">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-brand-clay">Most Popular</span>
-                <span class="px-2.5 py-0.5 rounded-full bg-brand-surface text-brand-dark text-xs font-semibold">40-Member Cap</span>
+                <span class="font-mono text-xs font-bold uppercase tracking-wider text-accent">Full Roster</span>
+                <span class="px-2.5 py-0.5 rounded-md bg-ink text-paper font-mono text-xs font-bold">40 Cap</span>
               </div>
-              <h3 class="font-display text-2xl font-bold text-brand-dark">Monthly Membership</h3>
+              <h3 class="font-display text-2xl font-black text-ink uppercase">Monthly Membership</h3>
               <div class="mt-4 flex items-baseline gap-1">
-                <span class="font-display text-4xl sm:text-5xl font-extrabold text-brand-dark">$150</span>
-                <span class="text-brand-muted text-sm font-medium">/ month</span>
+                <span class="font-display text-5xl font-black text-ink">$150</span>
+                <span class="font-mono text-xs font-bold uppercase text-ink/75">/ month</span>
               </div>
-              <p class="text-xs text-brand-muted mt-3 leading-relaxed">
+              <p class="text-xs text-ink/80 mt-3 leading-relaxed font-medium">
                 Full access to all weekday and Saturday classes, Open Gym sessions, and technical sparring rounds.
               </p>
 
-              <ul class="mt-6 space-y-3 text-xs sm:text-sm text-brand-charcoal border-t border-brand-border pt-5">
+              <ul class="mt-6 space-y-2.5 text-xs sm:text-sm text-ink font-medium border-t-2 border-ink pt-5">
                 <li class="flex items-center gap-2.5">
-                  <svg class="w-4 h-4 text-brand-sage shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                  <span>Unlimited Weekly Classes</span>
+                  <span class="w-2 h-2 rounded-full bg-accent shrink-0"></span>
+                  <span>Unlimited Weekly Classes (20 Cap)</span>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <svg class="w-4 h-4 text-brand-sage shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span class="w-2 h-2 rounded-full bg-accent shrink-0"></span>
                   <span>Daily Open Gym Access</span>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <svg class="w-4 h-4 text-brand-sage shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span class="w-2 h-2 rounded-full bg-accent shrink-0"></span>
                   <span>Mon, Thu &amp; Sat Sparring</span>
                 </li>
               </ul>
@@ -303,39 +462,39 @@
               href="https://www.instagram.com/the_muaythai_collective/" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="mt-8 w-full py-3.5 rounded-xl bg-brand-dark hover:bg-brand-charcoal text-white font-semibold text-sm text-center transition-colors block"
+              class="stamp-btn mt-8 w-full py-3.5 rounded-xl bg-accent text-paper border-2 border-ink font-bold text-sm text-center block stamp-shadow-sm"
             >
               Inquire on Instagram
             </a>
           </div>
 
-          <!-- Card 2: 10-Class Punch Pass -->
-          <div class="bg-white rounded-3xl border border-brand-border p-7 flex flex-col justify-between shadow-sm">
+          <!-- Card 2: 10-Card Punch Pass -->
+          <div class="bg-card rounded-2xl ticket-card p-7 flex flex-col justify-between stamp-shadow">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Punch Pass</span>
-                <span class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold">60-Day Expiry</span>
+                <span class="font-mono text-xs font-bold uppercase tracking-wider text-ink/75">Punch Pass</span>
+                <span class="px-2.5 py-0.5 rounded-md bg-accent text-paper font-mono text-xs font-bold">60-Day Expiry</span>
               </div>
-              <h3 class="font-display text-2xl font-bold text-brand-dark">10-Card Pass</h3>
+              <h3 class="font-display text-2xl font-black text-ink uppercase">10-Card Pass</h3>
               <div class="mt-4 flex items-baseline gap-1">
-                <span class="font-display text-4xl sm:text-5xl font-extrabold text-brand-dark">$210</span>
-                <span class="text-brand-muted text-sm font-medium">/ 10 classes</span>
+                <span class="font-display text-5xl font-black text-ink">$210</span>
+                <span class="font-mono text-xs font-bold uppercase text-ink/75">/ 10 classes</span>
               </div>
-              <p class="text-xs text-brand-muted mt-3 leading-relaxed">
-                Ideal if your schedule varies week to week. Works out to just $21 per session.
+              <p class="text-xs text-ink/80 mt-3 leading-relaxed font-medium">
+                Flexible punch pass for experienced practitioners with rotating schedules. Works out to $21/session.
               </p>
 
-              <ul class="mt-6 space-y-3 text-xs sm:text-sm text-brand-charcoal border-t border-brand-border pt-5">
+              <ul class="mt-6 space-y-2.5 text-xs sm:text-sm text-ink font-medium border-t-2 border-ink pt-5">
                 <li class="flex items-center gap-2.5">
-                  <svg class="w-4 h-4 text-brand-sage shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
                   <span>10 Classes or Open Gym Visits</span>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <svg class="w-4 h-4 text-brand-sage shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
                   <span>Save $40 vs. single drop-ins</span>
                 </li>
                 <li class="flex items-start gap-2.5">
-                  <svg class="w-4 h-4 text-brand-clay shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span class="w-2 h-2 rounded-full bg-accent shrink-0 mt-1.5"></span>
                   <span><strong>Must be used within 60 days</strong> of purchase date</span>
                 </li>
               </ul>
@@ -345,40 +504,40 @@
               href="https://www.instagram.com/the_muaythai_collective/" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="mt-8 w-full py-3.5 rounded-xl bg-brand-surface hover:bg-brand-border text-brand-dark font-semibold text-sm text-center transition-colors block"
+              class="stamp-btn mt-8 w-full py-3.5 rounded-xl bg-ink text-paper border-2 border-ink font-bold text-sm text-center block stamp-shadow-sm"
             >
               Grab a 10-Pass via DM
             </a>
           </div>
 
           <!-- Card 3: Single Drop-In -->
-          <div class="bg-white rounded-3xl border border-brand-border p-7 flex flex-col justify-between shadow-sm">
+          <div class="bg-card rounded-2xl ticket-card p-7 flex flex-col justify-between stamp-shadow">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Single Visit</span>
-                <span class="px-2.5 py-0.5 rounded-full bg-brand-surface text-brand-muted text-xs font-semibold">Pay As You Go</span>
+                <span class="font-mono text-xs font-bold uppercase tracking-wider text-ink/75">Single Visit</span>
+                <span class="px-2.5 py-0.5 rounded-md border border-ink text-ink font-mono text-xs font-bold">By Approval</span>
               </div>
-              <h3 class="font-display text-2xl font-bold text-brand-dark">Drop-In</h3>
+              <h3 class="font-display text-2xl font-black text-ink uppercase">Drop-In</h3>
               <div class="mt-4 flex items-baseline gap-1">
-                <span class="font-display text-4xl sm:text-5xl font-extrabold text-brand-dark">$25</span>
-                <span class="text-brand-muted text-sm font-medium">/ session</span>
+                <span class="font-display text-5xl font-black text-ink">$25</span>
+                <span class="font-mono text-xs font-bold uppercase text-ink/75">/ session</span>
               </div>
-              <p class="text-xs text-brand-muted mt-3 leading-relaxed">
-                Come check out the space, meet the coaches, and get a great sweat in for an evening or Saturday session.
+              <p class="text-xs text-ink/80 mt-3 leading-relaxed font-medium">
+                Drop in for a full weekday evening or Saturday training block. Message us ahead of time to confirm space.
               </p>
 
-              <ul class="mt-6 space-y-3 text-xs sm:text-sm text-brand-charcoal border-t border-brand-border pt-5">
+              <ul class="mt-6 space-y-2.5 text-xs sm:text-sm text-ink font-medium border-t-2 border-ink pt-5">
                 <li class="flex items-center gap-2.5">
-                  <svg class="w-4 h-4 text-brand-sage shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
                   <span>Full Evening or Saturday Block</span>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <svg class="w-4 h-4 text-brand-sage shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
                   <span>Includes Open Gym + Class</span>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <svg class="w-4 h-4 text-brand-sage shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                  <span>Message us ahead to reserve</span>
+                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
+                  <span>DM ahead to reserve your spot</span>
                 </li>
               </ul>
             </div>
@@ -387,7 +546,7 @@
               href="https://www.instagram.com/the_muaythai_collective/" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="mt-8 w-full py-3.5 rounded-xl bg-brand-surface hover:bg-brand-border text-brand-dark font-semibold text-sm text-center transition-colors block"
+              class="stamp-btn mt-8 w-full py-3.5 rounded-xl bg-paper text-ink border-2 border-ink font-bold text-sm text-center block stamp-shadow-sm"
             >
               Book a Drop-In via DM
             </a>
@@ -399,175 +558,162 @@
     </section>
 
     <!-- SECTION 02: TRAINING SCHEDULE -->
-    <section id="schedule" class="py-20">
+    <section id="schedule" class="py-20 border-b-2 border-ink">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <span class="text-xs font-bold uppercase tracking-widest text-brand-clay">Weekly Timetable</span>
-            <h2 class="font-display text-3xl sm:text-5xl font-bold text-brand-dark mt-2">
+            <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent">Weekly Fight Card</span>
+            <h2 class="font-display text-5xl sm:text-6xl uppercase mt-1 thai-masthead-sm">
               Training Schedule
             </h2>
           </div>
 
           <!-- Filter Buttons -->
           <div class="flex flex-wrap gap-2" role="group" aria-label="Filter schedule">
-            <button onclick="filterSchedule('all')" data-filter="all" class="schedule-filter-btn text-xs font-semibold px-4 py-2 rounded-full bg-brand-dark text-white transition-all">
-              All Sessions
+            <button onclick="filterSchedule('all')" data-filter="all" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-ink text-paper transition-all">
+              All
             </button>
-            <button onclick="filterSchedule('class')" data-filter="class" class="schedule-filter-btn text-xs font-semibold px-4 py-2 rounded-full bg-brand-surface text-brand-charcoal hover:bg-brand-border transition-all">
-              Classes
+            <button onclick="filterSchedule('class')" data-filter="class" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-card text-ink transition-all">
+              Classes (20 Cap)
             </button>
-            <button onclick="filterSchedule('sparring')" data-filter="sparring" class="schedule-filter-btn text-xs font-semibold px-4 py-2 rounded-full bg-brand-surface text-brand-charcoal hover:bg-brand-border transition-all">
+            <button onclick="filterSchedule('sparring')" data-filter="sparring" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-card text-ink transition-all">
               Sparring
             </button>
-            <button onclick="filterSchedule('opengym')" data-filter="opengym" class="schedule-filter-btn text-xs font-semibold px-4 py-2 rounded-full bg-brand-surface text-brand-charcoal hover:bg-brand-border transition-all">
+            <button onclick="filterSchedule('opengym')" data-filter="opengym" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-card text-ink transition-all">
               Open Gym
             </button>
           </div>
         </div>
 
         <!-- Schedule Cards Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 mb-8">
           
           <!-- MONDAY - FRIDAY CARD -->
-          <div class="lg:col-span-7 bg-white rounded-3xl border border-brand-border p-7 sm:p-8 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="flex flex-wrap items-center justify-between gap-2 pb-5 mb-5 border-b border-brand-border">
+          <div class="lg:col-span-7 bg-card rounded-2xl border-2 border-ink p-7 sm:p-8 stamp-shadow">
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-5 mb-5 border-b-2 border-ink">
+              <div>
+                <span class="font-mono text-xs font-bold text-accent uppercase tracking-wider">Weekdays</span>
+                <h3 class="font-display text-2xl sm:text-3xl font-black text-ink uppercase mt-0.5">Monday – Friday</h3>
+              </div>
+              <span class="px-3.5 py-1.5 rounded-lg bg-ink text-paper font-mono text-xs font-bold">
+                5:30 PM – 8:00 PM
+              </span>
+            </div>
+
+            <div class="divide-y-2 divide-ink/20">
+              <!-- 5:30 - 6:00 PM Open Gym -->
+              <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="opengym">
                 <div>
-                  <span class="text-xs font-semibold text-brand-clay uppercase tracking-wider">Weekdays</span>
-                  <h3 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark mt-0.5">Monday – Friday</h3>
+                  <div class="font-bold text-ink text-base uppercase">Open Gym</div>
+                  <div class="text-xs text-ink/80 font-medium">Warm-up, wrap hands, shadowbox &amp; heavy bag work</div>
                 </div>
-                <span class="px-3.5 py-1.5 rounded-full bg-brand-surface text-brand-dark text-xs font-bold">
-                  5:30 PM – 8:00 PM
-                </span>
+                <div class="font-mono text-sm font-bold text-ink whitespace-nowrap">
+                  5:30 – 6:00 PM
+                </div>
               </div>
 
-              <div class="divide-y divide-brand-border">
-                <!-- 5:30 - 6:00 PM Open Gym -->
-                <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="opengym">
-                  <div class="flex items-start gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-400 mt-1.5 shrink-0"></span>
-                    <div>
-                      <div class="font-bold text-brand-dark text-base">Open Gym</div>
-                      <div class="text-xs text-brand-muted">Warm-up, shadowboxing, wrap hands &amp; heavy bag work</div>
-                    </div>
+              <!-- 6:00 - 7:15 PM Class -->
+              <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="class">
+                <div>
+                  <div class="font-bold text-ink text-base uppercase flex flex-wrap items-center gap-2">
+                    <span>Collective Class</span>
+                    <span class="font-mono text-[11px] font-bold bg-accent text-paper px-2 py-0.5 rounded">Capped at 20</span>
                   </div>
-                  <div class="text-sm font-semibold text-brand-charcoal sm:text-right whitespace-nowrap pl-5 sm:pl-0">
-                    5:30 – 6:00 PM
-                  </div>
+                  <div class="text-xs text-ink/80 font-medium mt-0.5">Led by our coaches alongside member-taught sessions &bull; Thai pads &amp; partner drills</div>
                 </div>
-
-                <!-- 6:00 - 7:15 PM Class -->
-                <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="class">
-                  <div class="flex items-start gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-brand-clay mt-1.5 shrink-0"></span>
-                    <div>
-                      <div class="font-bold text-brand-dark text-base">
-                        Collective Class <span class="text-xs font-semibold text-brand-clay bg-orange-50 px-2 py-0.5 rounded-full ml-1">Capped at 20</span>
-                      </div>
-                      <div class="text-xs text-brand-muted">Coach &amp; member-led sessions &bull; Pad rounds, partner drills &amp; clinch</div>
-                    </div>
-                  </div>
-                  <div class="text-sm font-bold text-brand-clay sm:text-right whitespace-nowrap pl-5 sm:pl-0">
-                    6:00 – 7:15 PM
-                  </div>
+                <div class="font-mono text-sm font-bold text-accent whitespace-nowrap">
+                  6:00 – 7:15 PM
                 </div>
+              </div>
 
-                <!-- 7:15 - 8:00 PM Sparring (Mon & Thu) -->
-                <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="sparring">
-                  <div class="flex items-start gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-brand-sage mt-1.5 shrink-0"></span>
-                    <div>
-                      <div class="font-bold text-brand-dark text-base">
-                        Sparring <span class="text-xs font-semibold text-brand-sage bg-emerald-50 px-2 py-0.5 rounded-full ml-1">Monday &amp; Thursday</span>
-                      </div>
-                      <div class="text-xs text-brand-muted mt-0.5">Controlled, technical rounds &bull; 16oz gloves &amp; shin guards required</div>
-                    </div>
+              <!-- 7:15 - 8:00 PM Sparring (Mon & Thu) -->
+              <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="sparring">
+                <div>
+                  <div class="font-bold text-ink text-base uppercase flex flex-wrap items-center gap-2">
+                    <span>Sparring</span>
+                    <span class="font-mono text-[11px] font-bold bg-ink text-paper px-2 py-0.5 rounded">Monday &amp; Thursday</span>
                   </div>
-                  <div class="text-sm font-semibold text-brand-dark sm:text-right whitespace-nowrap pl-5 sm:pl-0">
-                    7:15 – 8:00 PM
-                  </div>
+                  <div class="text-xs text-ink/80 font-medium mt-0.5">Technical, controlled rounds &bull; 16oz gloves &amp; shin guards mandatory</div>
                 </div>
+                <div class="font-mono text-sm font-bold text-ink whitespace-nowrap">
+                  7:15 – 8:00 PM
+                </div>
+              </div>
 
-                <!-- 7:15 - 8:00 PM Open Gym (Tue, Wed & Fri) -->
-                <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="opengym">
-                  <div class="flex items-start gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-400 mt-1.5 shrink-0"></span>
-                    <div>
-                      <div class="font-bold text-brand-dark text-base">
-                        Open Gym <span class="text-xs font-semibold text-brand-muted bg-brand-surface px-2 py-0.5 rounded-full ml-1">Tuesday, Wednesday &amp; Friday</span>
-                      </div>
-                      <div class="text-xs text-brand-muted mt-0.5">Extra bag rounds, clinch practice, conditioning &amp; cooldown</div>
-                    </div>
+              <!-- 7:15 - 8:00 PM Open Gym (Tue, Wed & Fri) -->
+              <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="opengym">
+                <div>
+                  <div class="font-bold text-ink text-base uppercase flex flex-wrap items-center gap-2">
+                    <span>Open Gym</span>
+                    <span class="font-mono text-[11px] font-bold border border-ink text-ink px-2 py-0.5 rounded">Tue, Wed &amp; Fri</span>
                   </div>
-                  <div class="text-sm font-semibold text-brand-charcoal sm:text-right whitespace-nowrap pl-5 sm:pl-0">
-                    7:15 – 8:00 PM
-                  </div>
+                  <div class="text-xs text-ink/80 font-medium mt-0.5">Clinch rounds, bag work, conditioning &amp; peer drilling</div>
+                </div>
+                <div class="font-mono text-sm font-bold text-ink whitespace-nowrap">
+                  7:15 – 8:00 PM
                 </div>
               </div>
             </div>
           </div>
 
           <!-- SATURDAY & SUNDAY COLUMN -->
-          <div class="lg:col-span-5 flex flex-col gap-6">
+          <div class="lg:col-span-5 flex flex-col gap-7">
             
             <!-- Saturday Card -->
-            <div class="bg-white rounded-3xl border border-brand-border p-7 shadow-sm flex-1">
-              <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-brand-border">
+            <div class="bg-card rounded-2xl border-2 border-ink p-7 stamp-shadow flex-1">
+              <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b-2 border-ink">
                 <div>
-                  <span class="text-xs font-semibold text-brand-clay uppercase tracking-wider">Weekend</span>
-                  <h3 class="font-display text-2xl font-bold text-brand-dark mt-0.5">Saturday</h3>
+                  <span class="font-mono text-xs font-bold text-accent uppercase tracking-wider">Weekend</span>
+                  <h3 class="font-display text-2xl font-black text-ink uppercase mt-0.5">Saturday</h3>
                 </div>
-                <span class="px-3.5 py-1.5 rounded-full bg-brand-surface text-brand-dark text-xs font-bold">
+                <span class="px-3.5 py-1.5 rounded-lg bg-ink text-paper font-mono text-xs font-bold">
                   11:00 AM – 1:30 PM
                 </span>
               </div>
 
-              <div class="divide-y divide-brand-border">
+              <div class="divide-y-2 divide-ink/20">
                 <div class="schedule-item py-3 flex items-center justify-between gap-2" data-category="opengym">
-                  <div>
-                    <div class="font-semibold text-brand-dark text-sm">Doors Open / Open Gym Warm-Up</div>
-                  </div>
-                  <div class="text-xs font-semibold text-brand-muted whitespace-nowrap">11:00 – 11:30 AM</div>
+                  <div class="font-bold text-ink text-sm uppercase">Doors / Open Gym Warm-Up</div>
+                  <div class="font-mono text-xs font-bold text-ink">11:00 – 11:30 AM</div>
                 </div>
 
                 <div class="schedule-item py-3.5 flex items-center justify-between gap-2" data-category="class">
                   <div>
-                    <div class="font-bold text-brand-dark text-base">
-                      Collective Class <span class="text-[11px] font-semibold text-brand-clay bg-orange-50 px-2 py-0.5 rounded-full ml-1">20 Cap</span>
+                    <div class="font-bold text-ink text-base uppercase">
+                      Class <span class="font-mono text-[10px] bg-accent text-paper px-1.5 py-0.5 rounded ml-1">20 Cap</span>
                     </div>
-                    <div class="text-xs text-brand-muted">Coach &amp; member-led rounds</div>
+                    <div class="text-xs text-ink/80">Coach &amp; member-taught sessions</div>
                   </div>
-                  <div class="text-sm font-bold text-brand-clay whitespace-nowrap">11:30 AM – 12:45 PM</div>
+                  <div class="font-mono text-sm font-bold text-accent whitespace-nowrap">11:30 – 12:45 PM</div>
                 </div>
 
                 <div class="schedule-item py-3.5 flex items-center justify-between gap-2" data-category="sparring opengym">
                   <div>
-                    <div class="font-bold text-brand-dark text-base">Sparring / Open Gym</div>
-                    <div class="text-xs text-brand-muted">Weekend rounds &amp; open mat</div>
+                    <div class="font-bold text-ink text-base uppercase">Sparring / Open Gym</div>
+                    <div class="text-xs text-ink/80">Weekend rounds &amp; open mat</div>
                   </div>
-                  <div class="text-sm font-semibold text-brand-dark whitespace-nowrap">12:45 – 1:30 PM</div>
+                  <div class="font-mono text-sm font-bold text-ink whitespace-nowrap">12:45 – 1:30 PM</div>
                 </div>
               </div>
             </div>
 
             <!-- Sunday Card -->
-            <div class="bg-white rounded-3xl border border-brand-border p-7 shadow-sm">
-              <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-brand-border">
+            <div class="bg-card rounded-2xl border-2 border-ink p-7 stamp-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b-2 border-ink">
                 <div>
-                  <span class="text-xs font-semibold text-brand-muted uppercase tracking-wider">1-on-1 Sessions</span>
-                  <h3 class="font-display text-2xl font-bold text-brand-dark mt-0.5">Sunday</h3>
+                  <span class="font-mono text-xs font-bold text-ink/75 uppercase tracking-wider">1-on-1 Sessions</span>
+                  <h3 class="font-display text-2xl font-black text-ink uppercase mt-0.5">Sunday</h3>
                 </div>
-                <span class="px-3 py-1 rounded-full bg-brand-surface text-brand-muted text-xs font-semibold">
+                <span class="px-3 py-1 rounded-md bg-paper border border-ink font-mono text-xs font-bold">
                   Closed (for now)
                 </span>
               </div>
 
-              <div class="flex items-center justify-between text-sm pt-1">
-                <span class="font-semibold text-brand-dark">Private Training</span>
-                <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-brand-clay hover:underline">
-                  Book via Instagram DM &rarr;
+              <div class="flex items-center justify-between text-sm pt-1 font-bold">
+                <span>Private Training</span>
+                <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-accent underline">
+                  DM on Instagram &rarr;
                 </a>
               </div>
             </div>
@@ -576,55 +722,11 @@
 
         </div>
 
-        <!-- 7-Day Evening Rotation Quick Glance -->
-        <div class="bg-white rounded-2xl border border-brand-border p-5">
-          <div class="text-xs font-semibold text-brand-muted uppercase tracking-wider mb-3">
-            7:15 PM – 8:00 PM Evening Rotation at a Glance
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 text-xs">
-            <div class="schedule-item p-3 rounded-xl bg-emerald-50/70 border border-emerald-200" data-category="sparring">
-              <div class="font-bold text-brand-sage">MON</div>
-              <div class="font-semibold text-brand-dark mt-0.5">Sparring</div>
-              <div class="text-[11px] text-brand-muted">7:15 – 8:00 PM</div>
-            </div>
-            <div class="schedule-item p-3 rounded-xl bg-brand-surface/70 border border-brand-border" data-category="opengym">
-              <div class="font-bold text-brand-muted">TUE</div>
-              <div class="font-semibold text-brand-dark mt-0.5">Open Gym</div>
-              <div class="text-[11px] text-brand-muted">7:15 – 8:00 PM</div>
-            </div>
-            <div class="schedule-item p-3 rounded-xl bg-brand-surface/70 border border-brand-border" data-category="opengym">
-              <div class="font-bold text-brand-muted">WED</div>
-              <div class="font-semibold text-brand-dark mt-0.5">Open Gym</div>
-              <div class="text-[11px] text-brand-muted">7:15 – 8:00 PM</div>
-            </div>
-            <div class="schedule-item p-3 rounded-xl bg-emerald-50/70 border border-emerald-200" data-category="sparring">
-              <div class="font-bold text-brand-sage">THU</div>
-              <div class="font-semibold text-brand-dark mt-0.5">Sparring</div>
-              <div class="text-[11px] text-brand-muted">7:15 – 8:00 PM</div>
-            </div>
-            <div class="schedule-item p-3 rounded-xl bg-brand-surface/70 border border-brand-border" data-category="opengym">
-              <div class="font-bold text-brand-muted">FRI</div>
-              <div class="font-semibold text-brand-dark mt-0.5">Open Gym</div>
-              <div class="text-[11px] text-brand-muted">7:15 – 8:00 PM</div>
-            </div>
-            <div class="schedule-item p-3 rounded-xl bg-brand-surface/70 border border-brand-border" data-category="sparring opengym">
-              <div class="font-bold text-brand-clay">SAT</div>
-              <div class="font-semibold text-brand-dark mt-0.5">Spar / Open</div>
-              <div class="text-[11px] text-brand-muted">12:45 – 1:30 PM</div>
-            </div>
-            <div class="p-3 rounded-xl bg-zinc-50 border border-zinc-200 opacity-75">
-              <div class="font-bold text-zinc-400">SUN</div>
-              <div class="font-semibold text-zinc-600 mt-0.5">Private Only</div>
-              <div class="text-[11px] text-zinc-400">By Request</div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
     <!-- SECTION 03: LOCATION & DIRECTIONS -->
-    <section id="location" class="py-20 bg-brand-surface border-t border-brand-border">
+    <section id="location" class="py-20">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -632,27 +734,27 @@
           <!-- Left: Address & Visiting Info -->
           <div class="lg:col-span-5 space-y-6">
             <div>
-              <span class="text-xs font-bold uppercase tracking-widest text-brand-clay">Find Us in East Van</span>
-              <h2 class="font-display text-3xl sm:text-4xl font-bold text-brand-dark mt-2">
+              <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent">East Vancouver</span>
+              <h2 class="font-display text-4xl sm:text-6xl uppercase mt-1 thai-masthead-sm leading-none">
                 220 Victoria Dr,<br>Unit #120
               </h2>
-              <p class="text-sm text-brand-muted mt-2">
+              <p class="font-mono text-xs font-bold text-ink mt-3 uppercase">
                 Vancouver, BC V5L 0C7
               </p>
             </div>
 
-            <div class="space-y-4 text-sm text-brand-charcoal">
-              <div class="p-4 rounded-2xl bg-white border border-brand-border">
-                <div class="font-semibold text-brand-dark">Invite-Only Access &amp; Drop-Ins</div>
-                <p class="text-xs text-brand-muted mt-1 leading-relaxed">
-                  We don’t take unannounced walk-ins. Request to follow <strong>@the_muaythai_collective</strong> on Instagram and DM us with who referred you (or your training background) before coming down.
+            <div class="space-y-4 text-sm">
+              <div class="p-4 rounded-xl bg-card border-2 border-ink stamp-shadow-sm">
+                <div class="font-bold text-ink uppercase">Invite-Only Access</div>
+                <p class="text-xs text-ink/85 mt-1 leading-relaxed font-medium">
+                  No unannounced walk-ins. Request to follow <strong>@the_muaythai_collective</strong> on Instagram and DM us with your referral or training background before dropping by.
                 </p>
               </div>
 
-              <div class="p-4 rounded-2xl bg-white border border-brand-border">
-                <div class="font-semibold text-brand-dark">What to Bring</div>
-                <p class="text-xs text-brand-muted mt-1 leading-relaxed">
-                  Hand wraps, water bottle, boxing gloves (16oz required for sparring), shin guards, and a mouthguard. Everyone is expected to know how to hold Thai pads.
+              <div class="p-4 rounded-xl bg-card border-2 border-ink stamp-shadow-sm">
+                <div class="font-bold text-ink uppercase">Gear Check</div>
+                <p class="text-xs text-ink/85 mt-1 leading-relaxed font-medium">
+                  Hand wraps, water bottle, 16oz gloves for sparring, shin guards, and mouthguard. Everyone on the floor is expected to know how to hold Thai pads.
                 </p>
               </div>
             </div>
@@ -662,7 +764,7 @@
                 href="https://www.google.com/maps/search/?api=1&query=220+Victoria+Dr+Unit+120+Vancouver+BC" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="px-5 py-3 rounded-xl bg-brand-dark hover:bg-brand-charcoal text-white text-xs sm:text-sm font-semibold transition-all inline-flex items-center gap-2"
+                class="stamp-btn px-5 py-3 rounded-xl bg-ink text-paper border-2 border-ink text-xs sm:text-sm font-bold inline-flex items-center gap-2 stamp-shadow-sm"
               >
                 <span>Open in Google Maps</span>
                 <span>&nearr;</span>
@@ -670,7 +772,7 @@
               <button 
                 onclick="copyAddress()" 
                 id="copyAddrBtn"
-                class="px-5 py-3 rounded-xl bg-white border border-brand-border hover:border-brand-dark text-brand-dark text-xs sm:text-sm font-semibold transition-all"
+                class="stamp-btn px-5 py-3 rounded-xl bg-card border-2 border-ink text-ink text-xs sm:text-sm font-bold stamp-shadow-sm"
               >
                 Copy Address
               </button>
@@ -679,13 +781,13 @@
 
           <!-- Right: Embedded Interactive Google Map -->
           <div class="lg:col-span-7">
-            <div class="bg-white p-3 rounded-3xl border border-brand-border shadow-sm">
-              <div class="rounded-2xl overflow-hidden h-80 sm:h-96 w-full bg-brand-surface">
+            <div class="bg-card p-3 rounded-2xl border-2 border-ink stamp-shadow">
+              <div class="rounded-xl overflow-hidden h-80 sm:h-96 w-full border-2 border-ink">
                 <iframe 
                   title="The Muay Thai Collective Map - 220 Victoria Dr Unit 120"
                   width="100%" 
                   height="100%" 
-                  style="border:0;" 
+                  style="border:0; filter: contrast(1.05) sepia(0.18);" 
                   loading="lazy" 
                   allowfullscreen 
                   referrerpolicy="no-referrer-when-downgrade"
@@ -701,28 +803,25 @@
     </section>
 
     <!-- SECTION 04: INSTAGRAM CTA BANNER -->
-    <section class="py-20">
+    <section class="py-14">
       <div class="max-w-4xl mx-auto px-4 sm:px-6">
-        <div class="rounded-3xl bg-brand-dark text-white p-8 sm:p-12 text-center shadow-md">
-          <span class="inline-block px-3.5 py-1 rounded-full bg-white/10 text-xs font-semibold tracking-wider uppercase text-zinc-200 mb-4">
+        <div class="rounded-2xl bg-ink text-paper border-2 border-ink p-8 sm:p-12 text-center stamp-shadow-accent">
+          <span class="inline-block px-3.5 py-1 rounded-md bg-accent text-paper font-mono text-xs font-bold tracking-wider uppercase mb-4">
             Invite-Only &bull; @the_muaythai_collective
           </span>
-          <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-tight">
+          <h2 class="font-display text-3xl sm:text-5xl font-black uppercase tracking-tight">
             Request to Follow for Access.
           </h2>
-          <p class="text-zinc-300 text-sm sm:text-base max-w-xl mx-auto mt-4 leading-relaxed">
-            Our Instagram is private and membership is capped at 40 people (20 per class). Request to follow us and send a DM to inquire about membership, the $1,500 Annual Promo (ends Nov 30), or a drop-in.
+          <p class="text-paper/85 text-sm sm:text-base max-w-xl mx-auto mt-4 leading-relaxed">
+            Our Instagram is private, classes are capped at 20, and total membership is capped at 40. Request to follow us and send a DM to inquire about membership, the $1,500 Annual Promo (ends Nov 30), or a drop-in.
           </p>
           <div class="mt-8">
             <a 
               href="https://www.instagram.com/the_muaythai_collective/" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand-clay hover:bg-brand-clayHover text-white font-semibold text-sm sm:text-base transition-all shadow-sm"
+              class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-accent text-paper border-2 border-paper font-bold text-sm sm:text-base transition-transform hover:-translate-y-0.5"
             >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
               <span>Request to Follow @the_muaythai_collective</span>
             </a>
           </div>
@@ -732,19 +831,18 @@
 
   </main>
 
-  <!-- Clean Footer -->
-  <footer class="border-t border-brand-border bg-white py-10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-muted">
+  <!-- Footer -->
+  <footer class="border-t-2 border-ink bg-card py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono font-bold text-ink">
       <div class="flex items-center gap-2.5">
-        <span class="w-2.5 h-2.5 rounded-full bg-brand-clay"></span>
-        <span class="font-display font-bold text-brand-dark text-sm">The Muay Thai Collective</span>
-        <span>&bull; 220 Victoria Dr, Unit #120, Vancouver, BC</span>
+        <span class="w-2.5 h-2.5 rounded-full bg-accent"></span>
+        <span class="uppercase">The Muay Thai Collective &bull; 220 Victoria Dr #120</span>
       </div>
-      <div class="flex items-center gap-6 font-medium">
-        <a href="#pricing" class="hover:text-brand-dark transition-colors">Memberships</a>
-        <a href="#schedule" class="hover:text-brand-dark transition-colors">Schedule</a>
-        <a href="#location" class="hover:text-brand-dark transition-colors">Location</a>
-        <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="text-brand-clay hover:underline font-semibold">Instagram</a>
+      <div class="flex items-center gap-6 uppercase">
+        <a href="#pricing" class="hover:text-accent">Rates</a>
+        <a href="#schedule" class="hover:text-accent">Schedule</a>
+        <a href="#location" class="hover:text-accent">Map</a>
+        <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="text-accent underline">Instagram</a>
       </div>
     </div>
   </footer>
@@ -757,11 +855,11 @@
 
       buttons.forEach(btn => {
         if (btn.dataset.filter === category) {
-          btn.classList.add('bg-brand-dark', 'text-white');
-          btn.classList.remove('bg-brand-surface', 'text-brand-charcoal');
+          btn.classList.add('bg-ink', 'text-paper');
+          btn.classList.remove('bg-card', 'text-ink');
         } else {
-          btn.classList.remove('bg-brand-dark', 'text-white');
-          btn.classList.add('bg-brand-surface', 'text-brand-charcoal');
+          btn.classList.remove('bg-ink', 'text-paper');
+          btn.classList.add('bg-card', 'text-ink');
         }
       });
 
@@ -770,7 +868,7 @@
         if (category === 'all' || categories.includes(category)) {
           item.style.opacity = '1';
         } else {
-          item.style.opacity = '0.25';
+          item.style.opacity = '0.22';
         }
         item.style.transition = 'opacity 0.2s ease';
       });
@@ -789,11 +887,8 @@
       document.body.removeChild(tempInput);
 
       btn.textContent = "Address Copied!";
-      btn.classList.add('bg-brand-dark', 'text-white');
-
       setTimeout(() => {
         btn.textContent = originalText;
-        btn.classList.remove('bg-brand-dark', 'text-white');
       }, 2000);
     }
   </script>
