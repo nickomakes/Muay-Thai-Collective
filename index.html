@@ -31,20 +31,21 @@
       background-color: var(--c-bg);
       color: var(--c-ink);
       transition: background-color 0.3s ease, color 0.3s ease;
-      /* Faded vintage offset halftone dots */
-      background-image: 
-        radial-gradient(var(--c-ink) 0.55px, transparent 0.55px),
-        radial-gradient(var(--c-accent) 0.45px, var(--c-bg) 0.45px);
-      background-size: 16px 16px;
-      background-position: 0 0, 8px 8px;
     }
 
     /* Sun-bleached newsprint patina & subtle paper vignette */
     .paper-tint {
       background: 
-        radial-gradient(circle at 50% 35%, rgba(255, 250, 235, 0.88) 0%, rgba(235, 222, 192, 0.92) 70%, rgba(190, 170, 135, 0.95) 100%);
-      mix-blend-mode: normal;
-      opacity: 0.91;
+        radial-gradient(circle at 50% 35%, rgba(255, 250, 235, 0.55) 0%, rgba(235, 222, 192, 0.45) 70%, rgba(190, 170, 135, 0.55) 100%);
+    }
+
+    /* Crisp Offset Halftone Dotted Grid (Rendered above paper tint so it never gets washed out) */
+    .halftone-grid {
+      background-image: 
+        radial-gradient(rgba(50, 84, 140, 0.26) 1.15px, transparent 1.15px),
+        radial-gradient(rgba(209, 72, 54, 0.18) 1px, transparent 1px);
+      background-size: 16px 16px;
+      background-position: 0 0, 8px 8px;
     }
 
     /* Vintage SVG Noise Grain Overlay */
@@ -174,8 +175,9 @@
 </head>
 
 <body class="font-sans antialiased min-h-screen flex flex-col relative faded-print">
-  <!-- Faded Magazine Paper & Grain Overlays -->
+  <!-- Faded Magazine Paper, Halftone Dotted Grid & Grain Overlays -->
   <div class="fixed inset-0 paper-tint pointer-events-none -z-20"></div>
+  <div class="fixed inset-0 halftone-grid pointer-events-none -z-10"></div>
   <div class="fixed inset-0 vintage-grain pointer-events-none z-50"></div>
 
   <!-- Top Promotional Announcement Banner -->
