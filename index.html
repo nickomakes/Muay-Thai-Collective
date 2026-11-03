@@ -2,7 +2,6 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="mtc-favi.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Muay Thai Collective | East Vancouver</title>
   <!-- Tailwind CSS -->
@@ -229,14 +228,15 @@
           </div>
 
           <!-- 3D Extruded Masthead + Issue Starburst Seal -->
-          <div class="relative inline-block pr-4 sm:pr-16">
+          <div class="relative inline-block pr-4 sm:pr-24">
             <h1 class="font-display text-6xl sm:text-8xl uppercase leading-[0.88] thai-masthead select-none">
-              The Muay Thai<br>
+              Muay<br>
+              Thai<br>
               Collective
             </h1>
 
-            <!-- Classic Thai Magazine Starburst Issue Seal (Like "ฉบับที่ 291 / 293") -->
-            <div class="hidden sm:flex absolute -right-6 bottom-1 w-24 h-24 items-center justify-center rotate-12">
+            <!-- Classic Thai Magazine Starburst Issue Seal moved up beside "MUAY" -->
+            <div class="hidden sm:flex absolute right-0 top-1 w-24 h-24 items-center justify-center rotate-12">
               <svg viewBox="0 0 100 100" class="w-full h-full text-ink drop-shadow">
                 <polygon fill="currentColor" points="50,0 58,12 71,4 74,18 89,14 86,29 100,32 91,44 100,56 86,62 91,76 76,76 75,91 61,85 54,99 43,88 31,98 25,84 11,89 12,74 0,72 7,59 0,47 12,38 4,25 18,22 17,7 31,11 37,0 47,10"/>
               </svg>
@@ -292,15 +292,9 @@
           <div class="bg-card rounded-2xl poster-frame p-7 sm:p-8 relative">
             
             <!-- Top Vintage Magazine Header -->
-            <div class="flex items-center justify-between pb-4 mb-5 border-b-2 border-ink">
-              <div>
-                <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent block">ยอดนักสู้ &bull; EAST VANCOUVER</span>
-                <h2 class="font-display text-3xl text-ink uppercase tracking-wide">How We Operate</h2>
-              </div>
-              <!-- Numbered Circle Badge (Like the "6" on bottom right of Issue #291) -->
-              <div class="w-12 h-12 rounded-full bg-ink text-paper flex items-center justify-center border-2 border-accent font-display text-2xl shrink-0 stamp-shadow-sm">
-                20
-              </div>
+            <div class="pb-4 mb-5 border-b-2 border-ink">
+              <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent block">EAST VANCOUVER</span>
+              <h2 class="font-display text-3xl text-ink uppercase tracking-wide mt-0.5">How We Operate</h2>
             </div>
 
             <!-- 3 Pillars -->
@@ -578,7 +572,7 @@
               All
             </button>
             <button onclick="filterSchedule('class')" data-filter="class" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-card text-ink transition-all">
-              Classes (20 Cap)
+              Pads (20 Cap)
             </button>
             <button onclick="filterSchedule('sparring')" data-filter="sparring" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-card text-ink transition-all">
               Sparring
@@ -620,7 +614,7 @@
               <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="class">
                 <div>
                   <div class="font-bold text-ink text-base uppercase flex flex-wrap items-center gap-2">
-                    <span>Collective Class</span>
+                    <span>Pads</span>
                     <span class="font-mono text-[11px] font-bold bg-accent text-paper px-2 py-0.5 rounded">Capped at 20</span>
                   </div>
                   <div class="text-xs text-ink/80 font-medium mt-0.5">Led by our coaches alongside member-taught sessions &bull; Thai pads &amp; partner drills</div>
@@ -684,7 +678,7 @@
                 <div class="schedule-item py-3.5 flex items-center justify-between gap-2" data-category="class">
                   <div>
                     <div class="font-bold text-ink text-base uppercase">
-                      Class <span class="font-mono text-[10px] bg-accent text-paper px-1.5 py-0.5 rounded ml-1">20 Cap</span>
+                      Pads <span class="font-mono text-[10px] bg-accent text-paper px-1.5 py-0.5 rounded ml-1">20 Cap</span>
                     </div>
                     <div class="text-xs text-ink/80">Coach &amp; member-taught sessions</div>
                   </div>
