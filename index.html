@@ -1,59 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-theme="hazard">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Muay Thai Collective | East Vancouver</title>
+  <title>Muay Thai Collective | East Vancouver</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Rubik Mono One /Changa One for chunky 80s magazine masthead + Plus Jakarta Sans + Space Mono -->
+  <!-- Google Fonts: Anton (Hardcore Flyer Display) + Space Grotesk + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       1980s THAI MUAY THAI MAGAZINE COVER PALETTE (Yod Nak Su #291)
-       3 Core Colors:
-       1. --c-bg     (Sun-Faded Magazine Paper Base)
-       2. --c-ink    (Deep Extrusion Block Shadow / Text Ink)
-       3. --c-accent (Sun-Baked Cover Masthead Face Color)
+       HARDCORE / PUNK ZINE 3-COLOR SYSTEM — HAZARD YELLOW EDITION
+       1. --c-bg     (Pitch Carbon Black)
+       2. --c-ink    (Stark Xerox White)
+       3. --c-accent (Hazard Yellow #FACC15)
        ========================================================================== */
 
-    :root {
-      --c-bg: #EFE6D0;
-      --c-bg-card: #F6F0E1;
-      --c-ink: #32548C;
-      --c-accent: #D14836;
+    :root,
+    [data-theme="hazard"] {
+      --c-bg: #080808;
+      --c-bg-card: #121212;
+      --c-ink: #FAFAFA;
+      --c-accent: #FACC15;
+      --c-accent-fg: #080808;
     }
 
     body {
       background-color: var(--c-bg);
       color: var(--c-ink);
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Sun-bleached newsprint patina & subtle paper vignette */
-    .paper-tint {
-      background: 
-        radial-gradient(circle at 50% 35%, rgba(255, 250, 235, 0.55) 0%, rgba(235, 222, 192, 0.45) 70%, rgba(190, 170, 135, 0.55) 100%);
+    [data-theme="crimson"] {
+      --c-bg: #09090B;
+      --c-bg-card: #121215;
+      --c-ink: #F4F4F0;
+      --c-accent: #E11D48;
+      --c-accent-fg: #F4F4F0;
     }
 
-    /* Crisp Offset Halftone Dotted Grid (Rendered above paper tint so it never gets washed out) */
-    .halftone-grid {
+    [data-theme="hazard"] {
+      --c-bg: #080808;
+      --c-bg-card: #121212;
+      --c-ink: #FAFAFA;
+      --c-accent: #FACC15;
+      --c-accent-fg: #080808;
+    }
+
+    [data-theme="xerox"] {
+      --c-bg: #060706;
+      --c-bg-card: #101210;
+      --c-ink: #F2F5F3;
+      --c-accent: #00F566;
+      --c-accent-fg: #060706;
+    }
+
+    body {
+      background-color: var(--c-bg);
+      color: var(--c-ink);
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Gritty Photocopy Halftone Screen */
+    .xerox-halftone {
       background-image: 
-        radial-gradient(rgba(50, 84, 140, 0.26) 1.15px, transparent 1.15px),
-        radial-gradient(rgba(209, 72, 54, 0.18) 1px, transparent 1px);
-      background-size: 16px 16px;
-      background-position: 0 0, 8px 8px;
+        radial-gradient(rgba(244, 244, 240, 0.14) 1px, transparent 1px),
+        radial-gradient(rgba(244, 244, 240, 0.06) 1px, transparent 1px);
+      background-size: 12px 12px;
+      background-position: 0 0, 6px 6px;
     }
 
-    /* Vintage SVG Noise Grain Overlay */
-    .vintage-grain {
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.065'/%3E%3C/svg%3E");
+    /* High-Contrast Punk Zine Noise Texture */
+    .zine-noise {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
     }
 
-    /* Custom 3-Color Utility Classes */
+    /* Custom Semantic Classes */
     .bg-paper { background-color: var(--c-bg); }
     .bg-card { background-color: var(--c-bg-card); }
     .bg-ink { background-color: var(--c-ink); }
@@ -62,100 +86,80 @@
     .text-paper { color: var(--c-bg); }
     .text-ink { color: var(--c-ink); }
     .text-accent { color: var(--c-accent); }
+    .text-accent-fg { color: var(--c-accent-fg); }
 
     .border-ink { border-color: var(--c-ink); }
     .border-accent { border-color: var(--c-accent); }
 
     /* ==========================================================================
-       AUTHENTIC 80s THAI MAGAZINE MASTHEAD 3D EXTRUSION EFFECT
-       Matches the Red/Pink letters + Cream/Yellow inner outline + Deep Blue/Green 3D block shadow
+       HARDCORE SHOW FLYER / STENCIL TYPOGRAPHY
        ========================================================================== */
-    .thai-masthead {
-      color: var(--c-accent);
-      -webkit-text-stroke: 2.5px var(--c-bg-card);
+    .punk-masthead {
+      color: var(--c-ink);
+      -webkit-text-stroke: 2px var(--c-bg);
       paint-order: stroke fill;
       text-shadow:
-        1px 1px 0px var(--c-ink),
-        2px 2px 0px var(--c-ink),
-        3px 3px 0px var(--c-ink),
-        4px 4px 0px var(--c-ink),
-        5px 5px 0px var(--c-ink),
-        6px 6px 0px var(--c-ink),
-        7px 7px 0px var(--c-ink),
-        8px 8px 0px var(--c-ink),
-        9px 9px 0px var(--c-ink);
+        3px 3px 0px var(--c-accent),
+        6px 6px 0px var(--c-accent),
+        9px 9px 0px var(--c-accent);
+      letter-spacing: -0.01em;
+    }
+
+    .punk-masthead-sm {
+      color: var(--c-ink);
+      text-shadow: 4px 4px 0px var(--c-accent);
       letter-spacing: 0.01em;
     }
 
-    .thai-masthead-sm {
-      color: var(--c-accent);
-      -webkit-text-stroke: 1.5px var(--c-bg-card);
-      paint-order: stroke fill;
-      text-shadow:
-        1px 1px 0px var(--c-ink),
-        2px 2px 0px var(--c-ink),
-        3px 3px 0px var(--c-ink),
-        4px 4px 0px var(--c-ink),
-        5px 5px 0px var(--c-ink);
-    }
-
-    /* Tactile Vintage Print Block Shadows */
-    .stamp-shadow {
+    /* Brutalist Hardcore Offset Shadows (Sharp 0px Radius) */
+    .brutal-shadow {
       box-shadow: 6px 6px 0px var(--c-ink);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
-    .stamp-shadow-sm {
+    .brutal-shadow-sm {
       box-shadow: 4px 4px 0px var(--c-ink);
     }
-    .stamp-shadow-accent {
+    .brutal-shadow-accent {
       box-shadow: 6px 6px 0px var(--c-accent);
     }
-    .stamp-btn:hover {
+    .brutal-btn {
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .brutal-btn:hover {
       transform: translate(-2px, -2px);
       box-shadow: 7px 7px 0px var(--c-ink);
     }
-    .stamp-btn:active {
+    .brutal-btn:active {
       transform: translate(2px, 2px);
       box-shadow: 1px 1px 0px var(--c-ink);
     }
 
-    /* Magazine Cover Photo Frame (Pink/Red double-border like Issue #291) */
-    .poster-frame {
-      border: 3px solid var(--c-accent);
+    /* Double-Line Hardcore Flyer Frame */
+    .flyer-frame {
+      border: 3px solid var(--c-ink);
       box-shadow: 
-        inset 0 0 0 3px var(--c-bg-card),
-        inset 0 0 0 5px var(--c-ink),
-        7px 7px 0px var(--c-ink);
+        inset 0 0 0 4px var(--c-bg-card),
+        inset 0 0 0 6px var(--c-accent),
+        8px 8px 0px var(--c-accent);
     }
 
-    /* Angled Magazine Cover Ribbon (Like bottom of Issue #291) */
-    .mag-ribbon {
-      clip-path: polygon(0 0, 97% 0, 100% 50%, 97% 100%, 0 100%);
+    /* Dymo Label Tape Look */
+    .dymo-tape {
+      background-color: var(--c-accent);
+      color: var(--c-accent-fg);
+      transform: rotate(-1deg);
+      display: inline-block;
     }
 
-    /* Retro Ticket Notches */
-    .ticket-card {
-      border: 2.5px solid var(--c-ink);
-      position: relative;
-    }
-
-    /* Sun-faded vintage print filter for the overall page */
-    .faded-print {
-      filter: contrast(0.95) saturate(0.88);
-    }
-
-    /* Marquee Ticker Animation */
-    @keyframes marquee {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
-    }
-    .animate-marquee {
-      display: flex;
-      width: max-content;
-      animation: marquee 28s linear infinite;
-    }
-    .animate-marquee:hover {
-      animation-play-state: paused;
+    /* Caution Diagonal Stripe Divider */
+    .slash-stripe {
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--c-accent),
+        var(--c-accent) 10px,
+        var(--c-bg) 10px,
+        var(--c-bg) 20px
+      );
     }
   </style>
 
@@ -164,9 +168,9 @@
       theme: {
         extend: {
           fontFamily: {
-            display: ['"Changa One"', 'sans-serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"Space Mono"', 'monospace']
+            display: ['"Anton"', 'sans-serif'],
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
           }
         }
       }
@@ -174,35 +178,35 @@
   </script>
 </head>
 
-<body class="font-sans antialiased min-h-screen flex flex-col relative faded-print">
-  <!-- Faded Magazine Paper, Halftone Dotted Grid & Grain Overlays -->
-  <div class="fixed inset-0 paper-tint pointer-events-none -z-20"></div>
-  <div class="fixed inset-0 halftone-grid pointer-events-none -z-10"></div>
-  <div class="fixed inset-0 vintage-grain pointer-events-none z-50"></div>
+<body class="font-sans antialiased min-h-screen flex flex-col relative">
+  <!-- Gritty Halftone & Photocopy Noise Overlays -->
+  <div class="fixed inset-0 xerox-halftone pointer-events-none -z-10"></div>
+  <div class="fixed inset-0 zine-noise pointer-events-none z-50"></div>
 
   <!-- Top Promotional Announcement Banner -->
-  <div class="bg-ink text-paper text-xs sm:text-sm py-2.5 px-4 text-center font-medium border-b-2 border-ink">
+  <div class="bg-accent text-accent-fg text-xs sm:text-sm py-2.5 px-4 text-center font-mono font-bold border-b-2 border-ink uppercase tracking-wider">
     <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-2">
-      <span class="px-2.5 py-0.5 rounded-md bg-accent text-paper text-[11px] font-mono font-bold uppercase tracking-wider">Limited Promo</span>
-      <span><strong>One Year Up Front: $1,500</strong> (Get 2 Months Free) — Ends <strong>November 30</strong>.</span>
-      <a href="#pricing" class="underline hover:opacity-80 font-bold ml-1">See Passes &rarr;</a>
+      <span class="px-2 py-0.5 bg-paper text-ink text-[11px] font-mono font-extrabold uppercase">[LIMITED PROMO]</span>
+      <span><strong>One Year Up Front: $1,500</strong> (2 Months Free) — Ends <strong>November 30</strong>.</span>
+      <a href="#pricing" class="underline hover:opacity-80 font-extrabold ml-1">See Passes &rarr;</a>
     </div>
   </div>
 
   <!-- Navigation (No Top-Left Logo Block as Requested) -->
   <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b-2 border-ink">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between sm:justify-end">
-      <nav class="flex items-center gap-5 sm:gap-8 w-full justify-between sm:justify-end">
-        <div class="flex items-center gap-5 sm:gap-8 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
+      <nav class="flex items-center gap-4 sm:gap-7 w-full justify-between sm:justify-end">
+        <div class="flex items-center gap-4 sm:gap-7 font-mono text-xs sm:text-sm font-extrabold uppercase tracking-widest">
           <a href="#schedule" class="text-ink hover:text-accent transition-colors">Schedule</a>
           <a href="#pricing" class="text-ink hover:text-accent transition-colors">Rates</a>
           <a href="#location" class="text-ink hover:text-accent transition-colors">Location</a>
+          <button type="button" onclick="openWaiverModal()" class="text-accent hover:underline uppercase font-extrabold">Waiver</button>
         </div>
         <a 
           href="https://www.instagram.com/the_muaythai_collective/" 
           target="_blank" 
           rel="noopener noreferrer"
-          class="stamp-btn inline-flex items-center gap-2 bg-accent text-paper border-2 border-ink text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 rounded-xl stamp-shadow-sm"
+          class="brutal-btn inline-flex items-center gap-2 bg-accent text-accent-fg border-2 border-ink text-xs sm:text-sm font-mono font-extrabold uppercase px-4 sm:px-5 py-2 brutal-shadow-sm"
         >
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -215,411 +219,83 @@
 
   <main class="flex-grow">
 
-    <!-- HERO SECTION (80s THAI MAGAZINE MASTHEAD TREATMENT) -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-14 pb-14 sm:pb-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+    <!-- HERO SECTION (FULL-SCREEN HARDCORE FLYER MASTHEAD) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-16 sm:pb-24 border-b-2 border-ink">
+      <div class="w-full space-y-10">
         
-        <!-- Left Column: 3D Extruded Magazine Title & Cover Ribbons -->
-        <div class="lg:col-span-7 space-y-6 relative">
-          
-          <!-- Angled Magazine Cover Ribbon (Like bottom of Issue #291) -->
-          <div class="inline-block mag-ribbon bg-accent text-paper px-5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider stamp-shadow-sm">
-            ★ Invite-Only &bull; 40 Members Total &bull; 20 Per Class
+        <!-- Full-Width 2-Line Masthead: MUAY THAI on line 1, COLLECTIVE on line 2 -->
+        <div>
+          <h1 class="font-display text-6xl sm:text-8xl md:text-9xl lg:text-[10.5rem] uppercase leading-[0.86] punk-masthead select-none">
+            Muay Thai<br>
+            Collective
+          </h1>
+        </div>
+
+        <!-- Primary CTAs -->
+        <div class="pt-2 space-y-4 max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-card border-2 border-ink font-mono text-xs font-extrabold uppercase tracking-wider text-accent">
+            <span>★ FIRST SESSION FREE FOR APPROVED NEWCOMERS (DM ON IG)</span>
           </div>
 
-          <!-- 3D Extruded Masthead + Issue Starburst Seal -->
-          <div class="relative inline-block pr-4 sm:pr-24">
-            <h1 class="font-display text-6xl sm:text-8xl uppercase leading-[0.88] thai-masthead select-none">
-              Muay<br>
-              Thai<br>
-              Collective
-            </h1>
-
-            <!-- Classic Thai Magazine Starburst Issue Seal moved up beside "MUAY" -->
-            <div class="hidden sm:flex absolute right-0 top-1 w-24 h-24 items-center justify-center rotate-12">
-              <svg viewBox="0 0 100 100" class="w-full h-full text-ink drop-shadow">
-                <polygon fill="currentColor" points="50,0 58,12 71,4 74,18 89,14 86,29 100,32 91,44 100,56 86,62 91,76 76,76 75,91 61,85 54,99 43,88 31,98 25,84 11,89 12,74 0,72 7,59 0,47 12,38 4,25 18,22 17,7 31,11 37,0 47,10"/>
-              </svg>
-              <div class="absolute inset-0 flex flex-col items-center justify-center text-paper font-mono leading-none text-center">
-                <span class="text-[9px] font-bold uppercase opacity-90">ROSTER</span>
-                <span class="font-display text-2xl">40</span>
-                <span class="text-[9px] font-bold uppercase">MAX CAP</span>
-              </div>
-            </div>
-          </div>
-
-          <p class="text-ink text-base sm:text-lg max-w-xl leading-relaxed font-semibold">
-            An invite-only, community-driven training space in East Vancouver. Everyone on the mats is already at a solid level—no commercial hand-holding or beginner cattle calls. Led by our coaches alongside member-taught sessions, with classes strictly capped at <strong>20 people on the floor</strong> and a total roster limit of <strong>40 members</strong>.
-          </p>
-
-          <!-- Primary CTAs -->
-          <div class="pt-2 flex flex-col sm:flex-row gap-4">
+          <div class="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5">
             <a 
               href="https://www.instagram.com/the_muaythai_collective/" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="stamp-btn px-7 py-4 rounded-xl bg-accent text-paper border-2 border-ink font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 stamp-shadow"
+              class="brutal-btn px-7 py-4 bg-accent text-accent-fg border-2 border-ink font-mono font-extrabold uppercase tracking-wider text-sm sm:text-base flex items-center justify-center gap-3 brutal-shadow"
             >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
               <span>Request to Follow @the_muaythai_collective</span>
             </a>
 
-            <a 
-              href="#pricing" 
-              class="stamp-btn px-7 py-4 rounded-xl bg-card border-2 border-ink text-ink font-bold text-sm sm:text-base flex items-center justify-center gap-2 stamp-shadow"
+            <button 
+              type="button"
+              onclick="openWaiverModal()"
+              class="brutal-btn px-7 py-4 bg-card border-2 border-ink text-ink font-mono font-extrabold uppercase tracking-wider text-sm sm:text-base flex items-center justify-center gap-2 brutal-shadow"
             >
-              <span>View Rates &amp; Passes</span>
-            </a>
-          </div>
-
-          <!-- Stacked Magazine Cover Ribbons (Inspired by bottom of Yod Nak Su #291) -->
-          <div class="pt-4 space-y-2 max-w-lg">
-            <div class="mag-ribbon bg-ink text-paper px-4 py-1.5 font-mono text-xs font-bold uppercase flex items-center justify-between pr-8">
-              <span>• ROSTER LIMIT: 40 MEMBERS TOTAL</span>
-              <span>EAST VANCOUVER</span>
-            </div>
-            <div class="mag-ribbon bg-accent text-paper px-4 py-1.5 font-mono text-xs font-bold uppercase flex items-center justify-between pr-8">
-              <span>• FLOOR CAP: 20 PER CLASS</span>
-              <span>220 VICTORIA #120</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Framed Magazine Inset Box (Like the Pink/Red Framed Inset Photos on Issue #291) -->
-        <div class="lg:col-span-5">
-          <div class="bg-card rounded-2xl poster-frame p-7 sm:p-8 relative">
-            
-            <!-- Top Vintage Magazine Header -->
-            <div class="pb-4 mb-5 border-b-2 border-ink">
-              <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent block">EAST VANCOUVER</span>
-              <h2 class="font-display text-3xl text-ink uppercase tracking-wide mt-0.5">How We Operate</h2>
-            </div>
-
-            <!-- 3 Pillars -->
-            <div class="space-y-4">
-              <div class="p-3.5 rounded-xl bg-paper border-2 border-ink flex items-start gap-3.5">
-                <div class="w-7 h-7 rounded-lg bg-accent text-paper font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-ink">
-                  01
-                </div>
-                <div>
-                  <h3 class="font-bold text-ink text-sm uppercase tracking-tight">Experienced, Self-Driven Room</h3>
-                  <p class="text-xs text-ink/90 leading-relaxed mt-0.5 font-medium">
-                    Everyone here already knows how to hold pads, control their power, and work. We train together as peers.
-                  </p>
-                </div>
-              </div>
-
-              <div class="p-3.5 rounded-xl bg-paper border-2 border-ink flex items-start gap-3.5">
-                <div class="w-7 h-7 rounded-lg bg-ink text-paper font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                  02
-                </div>
-                <div>
-                  <h3 class="font-bold text-ink text-sm uppercase tracking-tight">Coach &amp; Member-Taught</h3>
-                  <p class="text-xs text-ink/90 leading-relaxed mt-0.5 font-medium">
-                    Led by our coaches alongside member-taught sessions where experienced members share their own setups and styles.
-                  </p>
-                </div>
-              </div>
-
-              <div class="p-3.5 rounded-xl bg-paper border-2 border-ink flex items-start gap-3.5">
-                <div class="w-7 h-7 rounded-lg bg-accent text-paper font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-ink">
-                  03
-                </div>
-                <div>
-                  <h3 class="font-bold text-ink text-sm uppercase tracking-tight">20 Per Class / Invite-Only</h3>
-                  <p class="text-xs text-ink/90 leading-relaxed mt-0.5 font-medium">
-                    Capped at 20 people on the floor. Request to follow our private Instagram and DM your referral or background.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bottom Stamp Bar -->
-            <div class="mt-6 pt-4 border-t-2 border-ink flex items-center justify-between font-mono text-xs font-bold">
-              <span>220 VICTORIA DR #120</span>
-              <a href="#location" class="text-accent underline">MAP &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- VINTAGE ARENA MARQUEE DIVIDER -->
-    <div class="bg-ink text-paper py-3 border-y-2 border-ink overflow-hidden select-none">
-      <div class="animate-marquee font-mono text-xs sm:text-sm font-bold uppercase tracking-widest flex items-center gap-8">
-        <span>★ THE MUAY THAI COLLECTIVE</span>
-        <span class="text-accent">•</span>
-        <span>40-MEMBER ROSTER CAP</span>
-        <span class="text-accent">•</span>
-        <span>20 MAX PER CLASS</span>
-        <span class="text-accent">•</span>
-        <span>COMMUNITY &amp; PEER LED</span>
-        <span class="text-accent">•</span>
-        <span>220 VICTORIA DR, UNIT #120</span>
-        <span class="text-accent">•</span>
-        <span>INVITE ONLY VIA @THE_MUAYTHAI_COLLECTIVE</span>
-        <span class="text-accent">•</span>
-        <span>★ THE MUAY THAI COLLECTIVE</span>
-        <span class="text-accent">•</span>
-        <span>40-MEMBER ROSTER CAP</span>
-        <span class="text-accent">•</span>
-        <span>20 MAX PER CLASS</span>
-        <span class="text-accent">•</span>
-        <span>COMMUNITY &amp; PEER LED</span>
-        <span class="text-accent">•</span>
-        <span>220 VICTORIA DR, UNIT #120</span>
-      </div>
-    </div>
-
-    <!-- SECTION 01: MEMBERSHIPS & PRICING -->
-    <section id="pricing" class="py-20 border-b-2 border-ink">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent">Collective Dues &amp; Passes</span>
-          <h2 class="font-display text-5xl sm:text-6xl uppercase mt-1 thai-masthead-sm">
-            Rates &amp; Passes
-          </h2>
-          <p class="text-ink text-sm sm:text-base mt-3 font-semibold">
-            Access is by approval. Request to follow <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="text-accent underline font-bold">@the_muaythai_collective</a> on Instagram and DM us to claim a spot or arrange a drop-in.
-          </p>
-        </div>
-
-        <!-- Limited Time Annual Promo Ticket Banner -->
-        <div class="mb-10 rounded-2xl bg-ink text-paper border-2 border-ink p-7 sm:p-9 stamp-shadow-accent relative">
-          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            <div class="space-y-2 max-w-xl">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent text-paper font-mono text-xs font-bold uppercase tracking-wider">
-                <span>★ Founding Promo &bull; Ends November 30</span>
-              </div>
-              <h3 class="font-display text-2xl sm:text-4xl font-black uppercase">
-                One Year Up Front — $1,500
-              </h3>
-              <p class="text-paper/85 text-sm leading-relaxed">
-                Get <strong>two months free</strong> (save $300 — works out to $125/month). Available until <strong>November 30</strong> while our 40-member roster spots last.
-              </p>
-            </div>
-
-            <div class="flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end justify-between gap-4 shrink-0">
-              <div class="text-left lg:text-right">
-                <div class="text-3xl sm:text-4xl font-display font-black text-paper">$1,500</div>
-                <div class="font-mono text-xs text-paper/80 uppercase">Two Months Free &bull; Ends Nov 30</div>
-              </div>
-              <a 
-                href="https://www.instagram.com/the_muaythai_collective/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="px-6 py-3.5 rounded-xl bg-accent text-paper font-bold text-sm transition-transform hover:-translate-y-0.5 whitespace-nowrap border-2 border-paper"
-              >
-                Claim Promo via Instagram DM &rarr;
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 Pricing Ticket Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
-          
-          <!-- Card 1: Monthly Membership -->
-          <div class="bg-card rounded-2xl ticket-card p-7 flex flex-col justify-between stamp-shadow">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="font-mono text-xs font-bold uppercase tracking-wider text-accent">Full Roster</span>
-                <span class="px-2.5 py-0.5 rounded-md bg-ink text-paper font-mono text-xs font-bold">40 Cap</span>
-              </div>
-              <h3 class="font-display text-2xl font-black text-ink uppercase">Monthly Membership</h3>
-              <div class="mt-4 flex items-baseline gap-1">
-                <span class="font-display text-5xl font-black text-ink">$150</span>
-                <span class="font-mono text-xs font-bold uppercase text-ink/75">/ month</span>
-              </div>
-              <p class="text-xs text-ink/80 mt-3 leading-relaxed font-medium">
-                Full access to all weekday and Saturday classes, Open Gym sessions, and technical sparring rounds.
-              </p>
-
-              <ul class="mt-6 space-y-2.5 text-xs sm:text-sm text-ink font-medium border-t-2 border-ink pt-5">
-                <li class="flex items-center gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-accent shrink-0"></span>
-                  <span>Unlimited Weekly Classes (20 Cap)</span>
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-accent shrink-0"></span>
-                  <span>Daily Open Gym Access</span>
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-accent shrink-0"></span>
-                  <span>Mon, Thu &amp; Sat Sparring</span>
-                </li>
-              </ul>
-            </div>
-
-            <a 
-              href="https://www.instagram.com/the_muaythai_collective/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="stamp-btn mt-8 w-full py-3.5 rounded-xl bg-accent text-paper border-2 border-ink font-bold text-sm text-center block stamp-shadow-sm"
-            >
-              Inquire on Instagram
-            </a>
-          </div>
-
-          <!-- Card 2: 10-Card Punch Pass -->
-          <div class="bg-card rounded-2xl ticket-card p-7 flex flex-col justify-between stamp-shadow">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="font-mono text-xs font-bold uppercase tracking-wider text-ink/75">Punch Pass</span>
-                <span class="px-2.5 py-0.5 rounded-md bg-accent text-paper font-mono text-xs font-bold">60-Day Expiry</span>
-              </div>
-              <h3 class="font-display text-2xl font-black text-ink uppercase">10-Card Pass</h3>
-              <div class="mt-4 flex items-baseline gap-1">
-                <span class="font-display text-5xl font-black text-ink">$210</span>
-                <span class="font-mono text-xs font-bold uppercase text-ink/75">/ 10 classes</span>
-              </div>
-              <p class="text-xs text-ink/80 mt-3 leading-relaxed font-medium">
-                Flexible punch pass for experienced practitioners with rotating schedules. Works out to $21/session.
-              </p>
-
-              <ul class="mt-6 space-y-2.5 text-xs sm:text-sm text-ink font-medium border-t-2 border-ink pt-5">
-                <li class="flex items-center gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
-                  <span>10 Classes or Open Gym Visits</span>
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
-                  <span>Save $40 vs. single drop-ins</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-accent shrink-0 mt-1.5"></span>
-                  <span><strong>Must be used within 60 days</strong> of purchase date</span>
-                </li>
-              </ul>
-            </div>
-
-            <a 
-              href="https://www.instagram.com/the_muaythai_collective/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="stamp-btn mt-8 w-full py-3.5 rounded-xl bg-ink text-paper border-2 border-ink font-bold text-sm text-center block stamp-shadow-sm"
-            >
-              Grab a 10-Pass via DM
-            </a>
-          </div>
-
-          <!-- Card 3: Single Drop-In -->
-          <div class="bg-card rounded-2xl ticket-card p-7 flex flex-col justify-between stamp-shadow">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="font-mono text-xs font-bold uppercase tracking-wider text-ink/75">Single Visit</span>
-                <span class="px-2.5 py-0.5 rounded-md border border-ink text-ink font-mono text-xs font-bold">By Approval</span>
-              </div>
-              <h3 class="font-display text-2xl font-black text-ink uppercase">Drop-In</h3>
-              <div class="mt-4 flex items-baseline gap-1">
-                <span class="font-display text-5xl font-black text-ink">$25</span>
-                <span class="font-mono text-xs font-bold uppercase text-ink/75">/ session</span>
-              </div>
-              <p class="text-xs text-ink/80 mt-3 leading-relaxed font-medium">
-                Drop in for a full weekday evening or Saturday training block. Message us ahead of time to confirm space.
-              </p>
-
-              <ul class="mt-6 space-y-2.5 text-xs sm:text-sm text-ink font-medium border-t-2 border-ink pt-5">
-                <li class="flex items-center gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
-                  <span>Full Evening or Saturday Block</span>
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
-                  <span>Includes Open Gym + Class</span>
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-ink shrink-0"></span>
-                  <span>DM ahead to reserve your spot</span>
-                </li>
-              </ul>
-            </div>
-
-            <a 
-              href="https://www.instagram.com/the_muaythai_collective/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="stamp-btn mt-8 w-full py-3.5 rounded-xl bg-paper text-ink border-2 border-ink font-bold text-sm text-center block stamp-shadow-sm"
-            >
-              Book a Drop-In via DM
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECTION 02: TRAINING SCHEDULE -->
-    <section id="schedule" class="py-20 border-b-2 border-ink">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent">Weekly Fight Card</span>
-            <h2 class="font-display text-5xl sm:text-6xl uppercase mt-1 thai-masthead-sm">
-              Training Schedule
-            </h2>
-          </div>
-
-          <!-- Filter Buttons -->
-          <div class="flex flex-wrap gap-2" role="group" aria-label="Filter schedule">
-            <button onclick="filterSchedule('all')" data-filter="all" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-ink text-paper transition-all">
-              All
-            </button>
-            <button onclick="filterSchedule('class')" data-filter="class" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-card text-ink transition-all">
-              Pads (20 Cap)
-            </button>
-            <button onclick="filterSchedule('sparring')" data-filter="sparring" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-card text-ink transition-all">
-              Sparring
-            </button>
-            <button onclick="filterSchedule('opengym')" data-filter="opengym" class="schedule-filter-btn font-mono text-xs font-bold uppercase px-4 py-2 rounded-xl border-2 border-ink bg-card text-ink transition-all">
-              Open Gym
+              <span>Sign First-Timer Waiver</span>
             </button>
           </div>
         </div>
 
         <!-- Schedule Cards Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
           
           <!-- MONDAY - FRIDAY CARD -->
-          <div class="lg:col-span-7 bg-card rounded-2xl border-2 border-ink p-7 sm:p-8 stamp-shadow">
+          <div class="lg:col-span-7 bg-card border-2 border-ink p-7 sm:p-8 brutal-shadow">
             <div class="flex flex-wrap items-center justify-between gap-2 pb-5 mb-5 border-b-2 border-ink">
               <div>
-                <span class="font-mono text-xs font-bold text-accent uppercase tracking-wider">Weekdays</span>
-                <h3 class="font-display text-2xl sm:text-3xl font-black text-ink uppercase mt-0.5">Monday – Friday</h3>
+                <span class="font-mono text-xs font-extrabold text-accent uppercase tracking-wider">// WEEKDAYS</span>
+                <h3 class="font-display text-3xl sm:text-4xl text-ink uppercase mt-0.5 tracking-wide">Monday – Friday</h3>
               </div>
-              <span class="px-3.5 py-1.5 rounded-lg bg-ink text-paper font-mono text-xs font-bold">
+              <span class="px-3.5 py-1.5 bg-ink text-paper font-mono text-xs font-extrabold uppercase">
                 5:30 PM – 8:00 PM
               </span>
             </div>
 
-            <div class="divide-y-2 divide-ink/20">
+            <div class="divide-y-2 divide-ink/25 font-mono">
               <!-- 5:30 - 6:00 PM Open Gym -->
               <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="opengym">
                 <div>
-                  <div class="font-bold text-ink text-base uppercase">Open Gym</div>
-                  <div class="text-xs text-ink/80 font-medium">Warm-up, wrap hands, shadowbox &amp; heavy bag work</div>
+                  <div class="font-extrabold text-ink text-base uppercase">Open Gym</div>
+                  <div class="text-xs text-ink/75">Warm-up, wrap hands, shadowbox &amp; heavy bag work</div>
                 </div>
-                <div class="font-mono text-sm font-bold text-ink whitespace-nowrap">
+                <div class="text-sm font-extrabold text-ink whitespace-nowrap">
                   5:30 – 6:00 PM
                 </div>
               </div>
 
-              <!-- 6:00 - 7:15 PM Class -->
+              <!-- 6:00 - 7:15 PM Pads -->
               <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="class">
                 <div>
-                  <div class="font-bold text-ink text-base uppercase flex flex-wrap items-center gap-2">
+                  <div class="font-extrabold text-ink text-base uppercase">
                     <span>Pads</span>
-                    <span class="font-mono text-[11px] font-bold bg-accent text-paper px-2 py-0.5 rounded">Capped at 20</span>
                   </div>
-                  <div class="text-xs text-ink/80 font-medium mt-0.5">Led by our coaches alongside member-taught sessions &bull; Thai pads &amp; partner drills</div>
+                  <div class="text-xs text-ink/75 mt-0.5">Led by our coaches alongside member-taught sessions &bull; Thai pads &amp; partner drills</div>
                 </div>
-                <div class="font-mono text-sm font-bold text-accent whitespace-nowrap">
+                <div class="text-sm font-extrabold text-accent whitespace-nowrap">
                   6:00 – 7:15 PM
                 </div>
               </div>
@@ -627,13 +303,13 @@
               <!-- 7:15 - 8:00 PM Sparring (Mon & Thu) -->
               <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="sparring">
                 <div>
-                  <div class="font-bold text-ink text-base uppercase flex flex-wrap items-center gap-2">
+                  <div class="font-extrabold text-ink text-base uppercase flex flex-wrap items-center gap-2">
                     <span>Sparring</span>
-                    <span class="font-mono text-[11px] font-bold bg-ink text-paper px-2 py-0.5 rounded">Monday &amp; Thursday</span>
+                    <span class="text-[11px] font-extrabold bg-accent text-accent-fg px-2 py-0.5">Monday &amp; Thursday</span>
                   </div>
-                  <div class="text-xs text-ink/80 font-medium mt-0.5">Technical, controlled rounds &bull; 16oz gloves &amp; shin guards mandatory</div>
+                  <div class="text-xs text-ink/75 mt-0.5">Technical, controlled rounds &bull; 16oz gloves &amp; shin guards mandatory</div>
                 </div>
-                <div class="font-mono text-sm font-bold text-ink whitespace-nowrap">
+                <div class="text-sm font-extrabold text-ink whitespace-nowrap">
                   7:15 – 8:00 PM
                 </div>
               </div>
@@ -641,13 +317,13 @@
               <!-- 7:15 - 8:00 PM Open Gym (Tue, Wed & Fri) -->
               <div class="schedule-item py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2" data-category="opengym">
                 <div>
-                  <div class="font-bold text-ink text-base uppercase flex flex-wrap items-center gap-2">
+                  <div class="font-extrabold text-ink text-base uppercase flex flex-wrap items-center gap-2">
                     <span>Open Gym</span>
-                    <span class="font-mono text-[11px] font-bold border border-ink text-ink px-2 py-0.5 rounded">Tue, Wed &amp; Fri</span>
+                    <span class="text-[11px] font-extrabold border border-ink text-ink px-2 py-0.5">Tue, Wed &amp; Fri</span>
                   </div>
-                  <div class="text-xs text-ink/80 font-medium mt-0.5">Clinch rounds, bag work, conditioning &amp; peer drilling</div>
+                  <div class="text-xs text-ink/75 mt-0.5">Clinch rounds, bag work, conditioning &amp; peer drilling</div>
                 </div>
-                <div class="font-mono text-sm font-bold text-ink whitespace-nowrap">
+                <div class="text-sm font-extrabold text-ink whitespace-nowrap">
                   7:15 – 8:00 PM
                 </div>
               </div>
@@ -655,61 +331,61 @@
           </div>
 
           <!-- SATURDAY & SUNDAY COLUMN -->
-          <div class="lg:col-span-5 flex flex-col gap-7">
+          <div class="lg:col-span-5 flex flex-col gap-8">
             
             <!-- Saturday Card -->
-            <div class="bg-card rounded-2xl border-2 border-ink p-7 stamp-shadow flex-1">
+            <div class="bg-card border-2 border-ink p-7 brutal-shadow flex-1">
               <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b-2 border-ink">
                 <div>
-                  <span class="font-mono text-xs font-bold text-accent uppercase tracking-wider">Weekend</span>
-                  <h3 class="font-display text-2xl font-black text-ink uppercase mt-0.5">Saturday</h3>
+                  <span class="font-mono text-xs font-extrabold text-accent uppercase tracking-wider">// WEEKEND</span>
+                  <h3 class="font-display text-3xl text-ink uppercase mt-0.5 tracking-wide">Saturday</h3>
                 </div>
-                <span class="px-3.5 py-1.5 rounded-lg bg-ink text-paper font-mono text-xs font-bold">
+                <span class="px-3.5 py-1.5 bg-ink text-paper font-mono text-xs font-extrabold">
                   11:00 AM – 1:30 PM
                 </span>
               </div>
 
-              <div class="divide-y-2 divide-ink/20">
+              <div class="divide-y-2 divide-ink/25 font-mono">
                 <div class="schedule-item py-3 flex items-center justify-between gap-2" data-category="opengym">
-                  <div class="font-bold text-ink text-sm uppercase">Doors / Open Gym Warm-Up</div>
-                  <div class="font-mono text-xs font-bold text-ink">11:00 – 11:30 AM</div>
+                  <div class="font-extrabold text-ink text-sm uppercase">Doors / Open Gym Warm-Up</div>
+                  <div class="text-xs font-extrabold text-ink">11:00 – 11:30 AM</div>
                 </div>
 
                 <div class="schedule-item py-3.5 flex items-center justify-between gap-2" data-category="class">
                   <div>
-                    <div class="font-bold text-ink text-base uppercase">
-                      Pads <span class="font-mono text-[10px] bg-accent text-paper px-1.5 py-0.5 rounded ml-1">20 Cap</span>
+                    <div class="font-extrabold text-ink text-base uppercase">
+                      Pads
                     </div>
-                    <div class="text-xs text-ink/80">Coach &amp; member-taught sessions</div>
+                    <div class="text-xs text-ink/75">Coach &amp; member-taught sessions</div>
                   </div>
-                  <div class="font-mono text-sm font-bold text-accent whitespace-nowrap">11:30 – 12:45 PM</div>
+                  <div class="text-sm font-extrabold text-accent whitespace-nowrap">11:30 – 12:45 PM</div>
                 </div>
 
                 <div class="schedule-item py-3.5 flex items-center justify-between gap-2" data-category="sparring opengym">
                   <div>
-                    <div class="font-bold text-ink text-base uppercase">Sparring / Open Gym</div>
-                    <div class="text-xs text-ink/80">Weekend rounds &amp; open mat</div>
+                    <div class="font-extrabold text-ink text-base uppercase">Sparring / Open Gym</div>
+                    <div class="text-xs text-ink/75">Weekend rounds &amp; open mat</div>
                   </div>
-                  <div class="font-mono text-sm font-bold text-ink whitespace-nowrap">12:45 – 1:30 PM</div>
+                  <div class="text-sm font-extrabold text-ink whitespace-nowrap">12:45 – 1:30 PM</div>
                 </div>
               </div>
             </div>
 
             <!-- Sunday Card -->
-            <div class="bg-card rounded-2xl border-2 border-ink p-7 stamp-shadow">
+            <div class="bg-card border-2 border-ink p-7 brutal-shadow font-mono">
               <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b-2 border-ink">
                 <div>
-                  <span class="font-mono text-xs font-bold text-ink/75 uppercase tracking-wider">1-on-1 Sessions</span>
-                  <h3 class="font-display text-2xl font-black text-ink uppercase mt-0.5">Sunday</h3>
+                  <span class="text-xs font-extrabold text-ink/70 uppercase tracking-wider">// 1-ON-1 SESSIONS</span>
+                  <h3 class="font-display text-3xl text-ink uppercase mt-0.5 tracking-wide font-sans">Sunday</h3>
                 </div>
-                <span class="px-3 py-1 rounded-md bg-paper border border-ink font-mono text-xs font-bold">
+                <span class="px-3 py-1 bg-paper border border-ink text-xs font-extrabold uppercase">
                   Closed (for now)
                 </span>
               </div>
 
-              <div class="flex items-center justify-between text-sm pt-1 font-bold">
+              <div class="flex items-center justify-between text-sm pt-1 font-extrabold uppercase">
                 <span>Private Training</span>
-                <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-accent underline">
+                <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="text-xs text-accent underline">
                   DM on Instagram &rarr;
                 </a>
               </div>
@@ -722,74 +398,251 @@
       </div>
     </section>
 
+    <!-- SECTION 02: RATES & SQUARE CHECKOUT PASSES -->
+    <section id="pricing" class="py-20 border-b-2 border-ink">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <!-- Section Header -->
+        <div class="mb-12">
+          <span class="dymo-tape font-mono text-xs font-extrabold uppercase tracking-widest px-3 py-1">
+            // DUES &amp; PASSES
+          </span>
+          <h2 class="font-display text-5xl sm:text-7xl uppercase mt-3 punk-masthead-sm leading-none">
+            Rates &amp; Passes
+          </h2>
+          <p class="font-mono text-xs sm:text-sm text-ink/80 mt-3 max-w-2xl leading-relaxed">
+            Purchase memberships and passes directly via Square Checkout. First-time visitors: request to follow <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="text-accent underline font-extrabold">@the_muaythai_collective</a> on Instagram to claim your free trial session first.
+          </p>
+        </div>
+
+        <!-- Founding Promo Banner Card -->
+        <div class="bg-card flyer-frame p-7 sm:p-9 mb-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="space-y-2 max-w-2xl">
+            <span class="inline-block px-2.5 py-0.5 bg-accent text-accent-fg font-mono text-xs font-extrabold uppercase">
+              ★ FOUNDING PROMO &bull; ENDS NOVEMBER 30
+            </span>
+            <h3 class="font-display text-3xl sm:text-5xl text-ink uppercase tracking-wide">
+              One Year Up Front — $1,500
+            </h3>
+            <p class="font-mono text-xs sm:text-sm text-ink/80 leading-relaxed">
+              Get <strong>two months free</strong> (save $300 — works out to $125/month). Unlimited access to all weekday &amp; Saturday Pads, Open Gym, and Sparring sessions.
+            </p>
+          </div>
+
+          <div class="shrink-0 flex flex-col sm:items-end gap-2">
+            <div class="font-display text-4xl sm:text-5xl text-accent">$1,500 <span class="font-mono text-xs text-ink/70 uppercase">CAD / YR</span></div>
+            <!-- REPLACE href WITH YOUR SQUARE ANNUAL PAYMENT LINK -->
+            <a 
+              href="https://square.link/u/YOUR_ANNUAL_PROMO_LINK" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="brutal-btn px-7 py-4 bg-accent text-accent-fg border-2 border-ink font-mono text-xs sm:text-sm font-extrabold uppercase tracking-wider brutal-shadow-sm text-center"
+            >
+              Buy Annual Promo &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 3-Column Pass Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 font-mono">
+          
+          <!-- Monthly Membership -->
+          <div class="bg-card border-2 border-ink p-7 brutal-shadow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-extrabold uppercase pb-4 mb-4 border-b-2 border-ink">
+                <span class="text-accent">// RECURRING</span>
+                <span class="px-2 py-0.5 bg-ink text-paper">Monthly</span>
+              </div>
+              <h3 class="font-display text-3xl text-ink uppercase tracking-wide">Monthly Membership</h3>
+              <div class="mt-3 mb-4">
+                <span class="font-display text-5xl text-ink">$150</span>
+                <span class="text-xs text-ink/75 uppercase font-extrabold"> / month</span>
+              </div>
+              <p class="text-xs text-ink/80 leading-relaxed mb-5">
+                Full access to all weekday and Saturday Pads, Open Gym sessions, and technical sparring rounds.
+              </p>
+              <ul class="space-y-2.5 text-xs font-extrabold text-ink border-t-2 border-ink/25 pt-4 mb-7">
+                <li class="flex items-center gap-2"><span class="text-accent">&blacksquare;</span> Unlimited Weekly Pads</li>
+                <li class="flex items-center gap-2"><span class="text-accent">&blacksquare;</span> Daily Open Gym Access</li>
+                <li class="flex items-center gap-2"><span class="text-accent">&blacksquare;</span> Mon, Thu &amp; Sat Sparring</li>
+              </ul>
+            </div>
+
+            <!-- REPLACE href WITH YOUR SQUARE MONTHLY SUBSCRIPTION LINK -->
+            <a 
+              href="https://square.link/u/YOUR_MONTHLY_LINK" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="brutal-btn w-full py-3.5 px-5 bg-accent text-accent-fg border-2 border-ink text-xs font-extrabold uppercase text-center brutal-shadow-sm"
+            >
+              Subscribe &rarr;
+            </a>
+          </div>
+
+          <!-- 10-Card Pass -->
+          <div class="bg-card border-2 border-ink p-7 brutal-shadow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-extrabold uppercase pb-4 mb-4 border-b-2 border-ink">
+                <span class="text-accent">// PUNCH PASS</span>
+                <span class="px-2 py-0.5 bg-accent text-accent-fg">60-Day Expiry</span>
+              </div>
+              <h3 class="font-display text-3xl text-ink uppercase tracking-wide">10-Card Pass</h3>
+              <div class="mt-3 mb-4">
+                <span class="font-display text-5xl text-ink">$210</span>
+                <span class="text-xs text-ink/75 uppercase font-extrabold"> / 10 visits</span>
+              </div>
+              <p class="text-xs text-ink/80 leading-relaxed mb-5">
+                Flexible punch pass for experienced practitioners with rotating schedules. Works out to $21/session.
+              </p>
+              <ul class="space-y-2.5 text-xs font-extrabold text-ink border-t-2 border-ink/25 pt-4 mb-7">
+                <li class="flex items-center gap-2"><span class="text-accent">&blacksquare;</span> 10 Pads or Open Gym Visits</li>
+                <li class="flex items-center gap-2"><span class="text-accent">&blacksquare;</span> Save $40 vs. single drop-ins</li>
+                <li class="flex items-center gap-2"><span class="text-accent">&blacksquare;</span> Valid 60 days from purchase</li>
+              </ul>
+            </div>
+
+            <!-- REPLACE href WITH YOUR SQUARE 10-PASS PAYMENT LINK -->
+            <a 
+              href="https://square.link/u/YOUR_10PASS_LINK" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="brutal-btn w-full py-3.5 px-5 bg-ink text-paper border-2 border-ink text-xs font-extrabold uppercase text-center brutal-shadow-sm"
+            >
+              Buy 10-Pass &rarr;
+            </a>
+          </div>
+
+          <!-- Drop-In -->
+          <div class="bg-card border-2 border-ink p-7 brutal-shadow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-extrabold uppercase pb-4 mb-4 border-b-2 border-ink">
+                <span class="text-accent">// SINGLE VISIT</span>
+                <span class="px-2 py-0.5 bg-accent text-accent-fg">1st Class Free</span>
+              </div>
+              <h3 class="font-display text-3xl text-ink uppercase tracking-wide">Drop-In</h3>
+              <div class="mt-3 mb-4">
+                <span class="font-display text-5xl text-ink">$25</span>
+                <span class="text-xs text-ink/75 uppercase font-extrabold"> / session</span>
+              </div>
+              <p class="text-xs text-ink/80 leading-relaxed mb-5">
+                Drop in for a full weekday evening or Saturday training block. First trial session is free for approved newcomers.
+              </p>
+              <ul class="space-y-2.5 text-xs font-extrabold text-ink border-t-2 border-ink/25 pt-4 mb-7">
+                <li class="flex items-center gap-2"><span class="text-accent">&blacksquare;</span> First visit free (DM on IG)</li>
+                <li class="flex items-center gap-2"><span class="text-accent">&blacksquare;</span> Full Evening or Saturday Block</li>
+                <li class="flex items-center gap-2"><span class="text-accent">&blacksquare;</span> Includes Open Gym + Pads</li>
+              </ul>
+            </div>
+
+            <!-- REPLACE href WITH YOUR SQUARE DROP-IN PAYMENT LINK -->
+            <a 
+              href="https://square.link/u/YOUR_DROPIN_LINK" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="brutal-btn w-full py-3.5 px-5 bg-paper text-ink border-2 border-ink text-xs font-extrabold uppercase text-center brutal-shadow-sm"
+            >
+              Buy Drop-In &rarr;
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Square Security Footnote -->
+        <div class="mt-6 text-center font-mono text-[11px] text-ink/65 uppercase">
+          [ ALL PAYMENTS PROCESSED SECURELY BY SQUARE &bull; APPLE PAY, GOOGLE PAY &amp; MAJOR CARDS ACCEPTED ]
+        </div>
+
+      </div>
+    </section>
+
     <!-- SECTION 03: LOCATION & DIRECTIONS -->
     <section id="location" class="py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
         
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          <!-- Left: Address & Visiting Info -->
-          <div class="lg:col-span-5 space-y-6">
+          <!-- Left: Neighborhood Info -->
+          <div class="lg:col-span-6 space-y-6">
             <div>
-              <span class="font-mono text-xs font-bold uppercase tracking-widest text-accent">East Vancouver</span>
-              <h2 class="font-display text-4xl sm:text-6xl uppercase mt-1 thai-masthead-sm leading-none">
-                220 Victoria Dr,<br>Unit #120
+              <span class="dymo-tape font-mono text-xs font-extrabold uppercase tracking-widest px-3 py-1">
+                // EAST VANCOUVER
+              </span>
+              <h2 class="font-display text-5xl sm:text-7xl uppercase mt-3 punk-masthead-sm leading-none">
+                Hastings-Sunrise,<br>East Van
               </h2>
-              <p class="font-mono text-xs font-bold text-ink mt-3 uppercase">
-                Vancouver, BC V5L 0C7
+              <p class="font-mono text-xs font-extrabold text-accent mt-3 uppercase tracking-wider">
+                [ PRIVATE ADDRESS &bull; SHARED UPON APPROVAL ]
               </p>
             </div>
 
-            <div class="space-y-4 text-sm">
-              <div class="p-4 rounded-xl bg-card border-2 border-ink stamp-shadow-sm">
-                <div class="font-bold text-ink uppercase">Invite-Only Access</div>
-                <p class="text-xs text-ink/85 mt-1 leading-relaxed font-medium">
-                  No unannounced walk-ins. Request to follow <strong>@the_muaythai_collective</strong> on Instagram and DM us with your referral or training background before dropping by.
+            <div class="space-y-4 font-mono">
+              <div class="p-5 bg-card border-2 border-ink brutal-shadow-sm">
+                <div class="font-extrabold text-ink uppercase text-sm">// Exact Address Private</div>
+                <p class="text-xs sm:text-sm text-ink/80 mt-1.5 leading-relaxed">
+                  Our gym is located in the <strong>Hastings-Sunrise</strong> area in East Van. Request to follow <strong>@the_muaythai_collective</strong> on Instagram and DM us to find out the exact address and arrange a visit.
                 </p>
               </div>
 
-              <div class="p-4 rounded-xl bg-card border-2 border-ink stamp-shadow-sm">
-                <div class="font-bold text-ink uppercase">Gear Check</div>
-                <p class="text-xs text-ink/85 mt-1 leading-relaxed font-medium">
+              <div class="p-5 bg-card border-2 border-ink brutal-shadow-sm">
+                <div class="font-extrabold text-ink uppercase text-sm">// Gear Check</div>
+                <p class="text-xs sm:text-sm text-ink/80 mt-1.5 leading-relaxed">
                   Hand wraps, water bottle, 16oz gloves for sparring, shin guards, and mouthguard. Everyone on the floor is expected to know how to hold Thai pads.
                 </p>
               </div>
             </div>
 
-            <div class="flex flex-wrap gap-3 pt-1">
+            <div class="pt-1">
               <a 
-                href="https://www.google.com/maps/search/?api=1&query=220+Victoria+Dr+Unit+120+Vancouver+BC" 
+                href="https://www.instagram.com/the_muaythai_collective/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="stamp-btn px-5 py-3 rounded-xl bg-ink text-paper border-2 border-ink text-xs sm:text-sm font-bold inline-flex items-center gap-2 stamp-shadow-sm"
+                class="brutal-btn px-6 py-3.5 bg-accent text-accent-fg border-2 border-ink font-mono text-xs sm:text-sm font-extrabold uppercase inline-flex items-center gap-2 brutal-shadow-sm"
               >
-                <span>Open in Google Maps</span>
-                <span>&nearr;</span>
+                <span>Request to Follow for Address</span>
+                <span>&rarr;</span>
               </a>
-              <button 
-                onclick="copyAddress()" 
-                id="copyAddrBtn"
-                class="stamp-btn px-5 py-3 rounded-xl bg-card border-2 border-ink text-ink text-xs sm:text-sm font-bold stamp-shadow-sm"
-              >
-                Copy Address
-              </button>
             </div>
           </div>
 
-          <!-- Right: Embedded Interactive Google Map -->
-          <div class="lg:col-span-7">
-            <div class="bg-card p-3 rounded-2xl border-2 border-ink stamp-shadow">
-              <div class="rounded-xl overflow-hidden h-80 sm:h-96 w-full border-2 border-ink">
-                <iframe 
-                  title="The Muay Thai Collective Map - 220 Victoria Dr Unit 120"
-                  width="100%" 
-                  height="100%" 
-                  style="border:0; filter: contrast(1.05) sepia(0.18);" 
-                  loading="lazy" 
-                  allowfullscreen 
-                  referrerpolicy="no-referrer-when-downgrade"
-                  src="https://maps.google.com/maps?q=220%20Victoria%20Dr%20Unit%20120,%20Vancouver,%20BC&t=&z=15&ie=UTF8&iwloc=&output=embed">
-                </iframe>
+          <!-- Right: Private Sanctum Dispatch Card -->
+          <div class="lg:col-span-6">
+            <div class="bg-card p-7 sm:p-9 flyer-frame space-y-5 font-mono">
+              <div class="flex items-center justify-between border-b-2 border-ink pb-4">
+                <span class="text-xs font-extrabold uppercase tracking-wider text-accent">// LOCATION PROTOCOL</span>
+                <span class="px-2.5 py-0.5 bg-ink text-paper text-[11px] font-extrabold uppercase">East Van</span>
+              </div>
+              
+              <h3 class="font-display text-3xl sm:text-4xl text-ink uppercase leading-tight tracking-wide font-sans">
+                No Unannounced Walk-Ins
+              </h3>
+
+              <p class="text-xs sm:text-sm text-ink/80 leading-relaxed">
+                To keep the training environment focused and tight-knit, our unit number and street address are kept off public directories.
+              </p>
+
+              <ul class="space-y-3 text-xs sm:text-sm font-extrabold text-ink border-t-2 border-ink pt-4">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-accent">01.</span>
+                  <span>Request to follow <span class="underline">@the_muaythai_collective</span> on Instagram</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-accent">02.</span>
+                  <span>Send a quick DM with your training background &amp; complete the online waiver</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-accent">03.</span>
+                  <span>Receive exact Hastings-Sunrise coordinates &amp; your <strong>first session free</strong></span>
+                </li>
+              </ul>
+
+              <div class="pt-2">
+                <button
+                  type="button"
+                  onclick="openWaiverModal()"
+                  class="brutal-btn w-full py-3 bg-accent text-accent-fg border-2 border-ink font-mono text-xs font-extrabold uppercase tracking-wider brutal-shadow-sm"
+                >
+                  Open &amp; Sign Liability Waiver &rarr;
+                </button>
               </div>
             </div>
           </div>
@@ -802,22 +655,22 @@
     <!-- SECTION 04: INSTAGRAM CTA BANNER -->
     <section class="py-14">
       <div class="max-w-4xl mx-auto px-4 sm:px-6">
-        <div class="rounded-2xl bg-ink text-paper border-2 border-ink p-8 sm:p-12 text-center stamp-shadow-accent">
-          <span class="inline-block px-3.5 py-1 rounded-md bg-accent text-paper font-mono text-xs font-bold tracking-wider uppercase mb-4">
-            Invite-Only &bull; @the_muaythai_collective
+        <div class="bg-card text-ink border-2 border-ink p-8 sm:p-12 text-center brutal-shadow-accent">
+          <span class="inline-block px-3.5 py-1 bg-accent text-accent-fg font-mono text-xs font-extrabold tracking-wider uppercase mb-4">
+            // INVITE-ONLY &bull; @the_muaythai_collective
           </span>
-          <h2 class="font-display text-3xl sm:text-5xl font-black uppercase tracking-tight">
+          <h2 class="font-display text-4xl sm:text-6xl uppercase tracking-wide punk-masthead-sm">
             Request to Follow for Access.
           </h2>
-          <p class="text-paper/85 text-sm sm:text-base max-w-xl mx-auto mt-4 leading-relaxed">
-            Our Instagram is private, classes are capped at 20, and total membership is capped at 40. Request to follow us and send a DM to inquire about membership, the $1,500 Annual Promo (ends Nov 30), or a drop-in.
+          <p class="text-ink/80 font-mono text-xs sm:text-sm max-w-xl mx-auto mt-4 leading-relaxed">
+            Our Instagram is private. Request to follow us and send a DM to claim your <strong>free first trial session</strong>, inquire about membership, or lock in the $1,500 Annual Promo (ends Nov 30).
           </p>
           <div class="mt-8">
             <a 
               href="https://www.instagram.com/the_muaythai_collective/" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-accent text-paper border-2 border-paper font-bold text-sm sm:text-base transition-transform hover:-translate-y-0.5"
+              class="brutal-btn inline-flex items-center justify-center gap-3 px-8 py-4 bg-accent text-accent-fg border-2 border-ink font-mono font-extrabold uppercase text-xs sm:text-sm brutal-shadow-sm"
             >
               <span>Request to Follow @the_muaythai_collective</span>
             </a>
@@ -830,19 +683,167 @@
 
   <!-- Footer -->
   <footer class="border-t-2 border-ink bg-card py-10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono font-bold text-ink">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono font-extrabold text-ink">
       <div class="flex items-center gap-2.5">
-        <span class="w-2.5 h-2.5 rounded-full bg-accent"></span>
-        <span class="uppercase">The Muay Thai Collective &bull; 220 Victoria Dr #120</span>
+        <span class="w-2.5 h-2.5 bg-accent"></span>
+        <span class="uppercase">Muay Thai Collective &bull; Hastings-Sunrise, East Van</span>
       </div>
       <div class="flex items-center gap-6 uppercase">
         <a href="#pricing" class="hover:text-accent">Rates</a>
         <a href="#schedule" class="hover:text-accent">Schedule</a>
-        <a href="#location" class="hover:text-accent">Map</a>
+        <a href="#location" class="hover:text-accent">Location</a>
+        <button type="button" onclick="openWaiverModal()" class="hover:text-accent uppercase font-extrabold">Waiver</button>
         <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="text-accent underline">Instagram</a>
       </div>
     </div>
   </footer>
+
+  <!-- ==========================================================================
+       FIRST-TIMER LIABILITY WAIVER MODAL
+       ========================================================================== -->
+  <div id="waiver-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="waiver-title">
+    <div class="bg-card border-2 border-ink w-full max-w-2xl my-auto brutal-shadow-accent relative font-mono text-ink">
+      
+      <!-- Modal Top Header -->
+      <div class="bg-accent text-accent-fg px-5 py-3.5 border-b-2 border-ink flex items-center justify-between">
+        <div class="text-xs sm:text-sm font-extrabold uppercase tracking-wider">
+          // MANDATORY RELEASE &amp; WAIVER OF LIABILITY
+        </div>
+        <button type="button" onclick="closeWaiverModal()" class="px-2.5 py-0.5 bg-paper text-ink border border-ink text-xs font-extrabold uppercase hover:opacity-80">
+          [X] CLOSE
+        </button>
+      </div>
+
+      <!-- Modal Content: Form View -->
+      <form id="waiver-form" onsubmit="submitWaiver(event)" class="p-5 sm:p-7 space-y-5 max-h-[82vh] overflow-y-auto">
+        <div>
+          <h3 id="waiver-title" class="font-display text-3xl sm:text-4xl uppercase tracking-wide text-ink">
+            Muay Thai Collective — Participant Waiver
+          </h3>
+          <p class="text-xs text-ink/75 mt-1">
+            Required for all first-time trial attendees and members prior to stepping onto the mats in Vancouver, BC.
+          </p>
+        </div>
+
+        <!-- Scrollable Legal Waiver Text -->
+        <div class="bg-paper border-2 border-ink p-4 h-44 overflow-y-auto text-[11px] sm:text-xs leading-relaxed text-ink/90 space-y-3">
+          <p class="font-extrabold text-accent uppercase">
+            PLEASE READ CAREFULLY. BY SIGNING THIS DOCUMENT, YOU WAIVE CERTAIN LEGAL RIGHTS, INCLUDING THE RIGHT TO SUE.
+          </p>
+          <p>
+            <strong>1. Assumption of Risk:</strong> I acknowledge that participation in Muay Thai, kickboxing, pad holding, heavy bag training, clinching, conditioning, and technical sparring at <strong>Muay Thai Collective</strong> (Vancouver, British Columbia) involves inherent physical risks. These risks include, but are not limited to, bruises, sprains, strains, fractures, concussions, dental or eye injuries, joint damage, cardiovascular stress, and serious permanent injury or death. I voluntarily assume all risks associated with my participation.
+          </p>
+          <p>
+            <strong>2. Release of Liability &amp; Indemnity:</strong> In consideration of being permitted to participate in training sessions, open gym, or trial classes at Muay Thai Collective, I hereby release, waive, discharge, and covenant not to sue Muay Thai Collective, its founders, coaches, member-instructors, volunteers, landlords, and agents from any and all liability, claims, demands, or causes of action arising out of or related to any loss, damage, or injury that may be sustained by me while on the premises, whether caused by the negligence of the releasees or otherwise, to the fullest extent permitted under the laws of British Columbia.
+          </p>
+          <p>
+            <strong>3. Physical Readiness &amp; Conduct:</strong> I confirm that I am physically fit to participate in high-intensity combat sports training and have no undisclosed medical conditions that would place me or my training partners at risk. I agree to abide by all gym safety rules, maintain control during partner drills and sparring, and wear mandatory protective equipment (hand wraps, 16oz gloves, shin guards, and mouthguard for sparring).
+          </p>
+          <p>
+            <strong>4. Age of Majority:</strong> I certify that I am at least 19 years of age (the age of majority in British Columbia) and am legally competent to execute this binding electronic waiver.
+          </p>
+        </div>
+
+        <!-- Participant Details Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div>
+            <label for="w-name" class="block font-extrabold uppercase mb-1">Full Legal Name *</label>
+            <input id="w-name" type="text" required placeholder="Alex Rivera" class="w-full px-3 py-2.5 bg-paper border-2 border-ink text-ink focus:border-accent focus:outline-none">
+          </div>
+          <div>
+            <label for="w-ig" class="block font-extrabold uppercase mb-1">Instagram Handle <span class="text-ink/60 font-normal">(Optional)</span></label>
+            <input id="w-ig" type="text" placeholder="@yourhandle" class="w-full px-3 py-2.5 bg-paper border-2 border-ink text-ink focus:border-accent focus:outline-none">
+          </div>
+          <div>
+            <label for="w-email" class="block font-extrabold uppercase mb-1">Email Address *</label>
+            <input id="w-email" type="email" required placeholder="alex@example.com" class="w-full px-3 py-2.5 bg-paper border-2 border-ink text-ink focus:border-accent focus:outline-none">
+          </div>
+          <div>
+            <label for="w-phone" class="block font-extrabold uppercase mb-1">Phone Number *</label>
+            <input id="w-phone" type="tel" required placeholder="(604) 555-0199" class="w-full px-3 py-2.5 bg-paper border-2 border-ink text-ink focus:border-accent focus:outline-none">
+          </div>
+          <div>
+            <label for="w-emerg-name" class="block font-extrabold uppercase mb-1">Emergency Contact Name *</label>
+            <input id="w-emerg-name" type="text" required placeholder="Jordan Rivera" class="w-full px-3 py-2.5 bg-paper border-2 border-ink text-ink focus:border-accent focus:outline-none">
+          </div>
+          <div>
+            <label for="w-emerg-phone" class="block font-extrabold uppercase mb-1">Emergency Contact Phone *</label>
+            <input id="w-emerg-phone" type="tel" required placeholder="(604) 555-0144" class="w-full px-3 py-2.5 bg-paper border-2 border-ink text-ink focus:border-accent focus:outline-none">
+          </div>
+        </div>
+
+        <!-- Checkboxes -->
+        <div class="space-y-2.5 text-xs border-t-2 border-ink pt-4">
+          <label class="flex items-start gap-2.5 cursor-pointer">
+            <input id="w-agree-risk" type="checkbox" required class="mt-0.5 w-4 h-4 accent-[#FACC15]">
+            <span>I have read and agree to the <strong>Assumption of Risk &amp; Release of Liability</strong> above, and confirm I am 19+ years old. *</span>
+          </label>
+          <label class="flex items-start gap-2.5 cursor-pointer">
+            <input id="w-agree-pads" type="checkbox" required class="mt-0.5 w-4 h-4 accent-[#FACC15]">
+            <span>I confirm I have prior Muay Thai / striking experience, know how to hold Thai pads, and will bring my own gear. *</span>
+          </label>
+        </div>
+
+        <!-- Electronic Signature Box -->
+        <div class="bg-paper border-2 border-ink p-4 space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <label for="w-sig" class="font-extrabold uppercase text-accent">Type Full Legal Name as Electronic Signature *</label>
+            <span id="w-date-display" class="text-[11px] text-ink/70"></span>
+          </div>
+          <input id="w-sig" type="text" required placeholder="/s/ Your Full Legal Name" class="w-full px-3 py-2.5 bg-card border-2 border-ink text-ink italic text-sm focus:border-accent focus:outline-none">
+        </div>
+
+        <!-- Error Message Box -->
+        <div id="waiver-error" class="hidden p-3 bg-red-950 border-2 border-red-500 text-red-200 text-xs font-bold"></div>
+
+        <!-- Submit Button -->
+        <div class="flex flex-col sm:flex-row gap-3 pt-1">
+          <button type="submit" class="brutal-btn flex-1 py-3.5 px-6 bg-accent text-accent-fg border-2 border-ink font-extrabold uppercase text-xs sm:text-sm brutal-shadow-sm">
+            Sign Waiver &amp; Generate Receipt &rarr;
+          </button>
+        </div>
+      </form>
+
+      <!-- Modal Content: Signed Confirmation & DM Copy View -->
+      <div id="waiver-success" class="hidden p-5 sm:p-7 space-y-5 max-h-[82vh] overflow-y-auto">
+        <div class="inline-block px-3 py-1 bg-accent text-accent-fg text-xs font-extrabold uppercase">
+          ✓ WAIVER SIGNED &amp; TIMESTAMPED
+        </div>
+        <h3 class="font-display text-3xl sm:text-4xl uppercase tracking-wide">
+          You're Cleared for the Mats.
+        </h3>
+        <p class="text-xs text-ink/85 leading-relaxed">
+          Copy your signed waiver verification block below and paste it into your Instagram DM to <strong>@the_muaythai_collective</strong> so we have it on file and can send you the Hastings-Sunrise address.
+        </p>
+
+        <!-- Copyable Verification Receipt -->
+        <pre id="waiver-receipt-text" class="bg-paper border-2 border-ink p-4 text-[11px] sm:text-xs text-ink overflow-x-auto whitespace-pre-wrap select-all"></pre>
+
+        <div id="copy-feedback" class="hidden text-xs font-extrabold text-accent uppercase">
+          ✓ Copied to clipboard! Paste it directly into Instagram DM.
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button type="button" onclick="copyWaiverReceipt()" class="brutal-btn flex-1 py-3.5 px-5 bg-accent text-accent-fg border-2 border-ink text-xs font-extrabold uppercase brutal-shadow-sm">
+            1. Copy Signed Receipt
+          </button>
+          <a href="https://www.instagram.com/the_muaythai_collective/" target="_blank" rel="noopener noreferrer" class="brutal-btn flex-1 py-3.5 px-5 bg-ink text-paper border-2 border-ink text-xs font-extrabold uppercase text-center brutal-shadow-sm">
+            2. Open IG &amp; Paste in DM &rarr;
+          </a>
+        </div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-ink/30 text-xs">
+          <button type="button" onclick="downloadWaiverTxt()" class="underline text-ink/80 hover:text-accent">
+            Download .TXT Copy for Your Records
+          </button>
+          <button type="button" onclick="resetWaiverForm()" class="underline text-ink/60 hover:text-ink">
+            Sign Another Waiver
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <!-- Interactive Scripts -->
   <script>
@@ -852,10 +853,10 @@
 
       buttons.forEach(btn => {
         if (btn.dataset.filter === category) {
-          btn.classList.add('bg-ink', 'text-paper');
+          btn.classList.add('bg-accent', 'text-accent-fg');
           btn.classList.remove('bg-card', 'text-ink');
         } else {
-          btn.classList.remove('bg-ink', 'text-paper');
+          btn.classList.remove('bg-accent', 'text-accent-fg');
           btn.classList.add('bg-card', 'text-ink');
         }
       });
@@ -871,23 +872,112 @@
       });
     }
 
-    function copyAddress() {
-      const address = "220 Victoria Dr, Unit #120, Vancouver, BC V5L 0C7";
-      const btn = document.getElementById('copyAddrBtn');
-      const originalText = btn.textContent;
-
-      const tempInput = document.createElement('textarea');
-      tempInput.value = address;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempInput);
-
-      btn.textContent = "Address Copied!";
-      setTimeout(() => {
-        btn.textContent = originalText;
-      }, 2000);
+    // ========================================================================
+    // WAIVER MODAL & RECEIPT GENERATOR
+    // ========================================================================
+    function openWaiverModal() {
+      const modal = document.getElementById('waiver-modal');
+      const dateDisplay = document.getElementById('w-date-display');
+      const now = new Date();
+      dateDisplay.textContent = 'DATE: ' + now.toLocaleDateString('en-CA');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
     }
+
+    function closeWaiverModal() {
+      const modal = document.getElementById('waiver-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function submitWaiver(e) {
+      e.preventDefault();
+      const errorBox = document.getElementById('waiver-error');
+      errorBox.classList.add('hidden');
+
+      const name = document.getElementById('w-name').value.trim();
+      const ig = document.getElementById('w-ig').value.trim() || 'N/A';
+      const email = document.getElementById('w-email').value.trim();
+      const phone = document.getElementById('w-phone').value.trim();
+      const emergName = document.getElementById('w-emerg-name').value.trim();
+      const emergPhone = document.getElementById('w-emerg-phone').value.trim();
+      const sig = document.getElementById('w-sig').value.trim();
+
+      if (!name || !sig) {
+        errorBox.textContent = 'Please complete all required fields and provide your electronic signature.';
+        errorBox.classList.remove('hidden');
+        return;
+      }
+
+      const timestamp = new Date().toLocaleString('en-CA', {
+        timeZone: 'America/Vancouver',
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      });
+
+      const receiptID = 'MTC-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+
+      const receipt = [
+        '=== MUAY THAI COLLECTIVE — SIGNED WAIVER ===',
+        `Receipt ID: ${receiptID}`,
+        `Timestamp (PST): ${timestamp}`,
+        `Full Name: ${name}`,
+        `Instagram: ${ig}`,
+        `Email: ${email}`,
+        `Phone: ${phone}`,
+        `Emergency Contact: ${emergName} (${emergPhone})`,
+        `E-Signature: /s/ ${sig}`,
+        `Status: AGREED TO BC ASSUMPTION OF RISK & LIABILITY RELEASE (19+)`,
+        '============================================'
+      ].join('\n');
+
+      document.getElementById('waiver-receipt-text').textContent = receipt;
+      document.getElementById('waiver-form').classList.add('hidden');
+      document.getElementById('waiver-success').classList.remove('hidden');
+    }
+
+    function copyWaiverReceipt() {
+      const text = document.getElementById('waiver-receipt-text').textContent;
+      const tempArea = document.createElement('textarea');
+      tempArea.value = text;
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempArea);
+
+      const feedback = document.getElementById('copy-feedback');
+      feedback.classList.remove('hidden');
+    }
+
+    function downloadWaiverTxt() {
+      const text = document.getElementById('waiver-receipt-text').textContent;
+      const name = document.getElementById('w-name').value.trim().replace(/\s+/g, '_') || 'Participant';
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `MTC_Waiver_${name}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function resetWaiverForm() {
+      document.getElementById('waiver-form').reset();
+      document.getElementById('waiver-success').classList.add('hidden');
+      document.getElementById('waiver-form').classList.remove('hidden');
+      document.getElementById('copy-feedback').classList.add('hidden');
+    }
+
+    // Close modal if clicking outside the card
+    document.getElementById('waiver-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeWaiverModal();
+      }
+    });
   </script>
 </body>
 </html>
